@@ -1,0 +1,6 @@
+{
+  "name": "Tiger Chehar Raj Uvasad",
+  "description": "Temple Queue Management System with Voice Registration",
+  "requestFramePermissions": ["microphone"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
