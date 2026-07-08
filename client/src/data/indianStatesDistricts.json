@@ -1,0 +1,3206 @@
+[
+  {
+    "name": "Andhra Pradesh",
+    "localName": "ఆంధ్ర ప్రదేశ్",
+    "languageCode": "te",
+    "districts": [
+      {
+        "name": "Anantapur",
+        "localName": "అనంతపురం"
+      },
+      {
+        "name": "Chittoor",
+        "localName": "చిత్తూరు"
+      },
+      {
+        "name": "East Godavari",
+        "localName": "తూర్పు గోదావరి"
+      },
+      {
+        "name": "Guntur",
+        "localName": "గుంటూరు"
+      },
+      {
+        "name": "Krishna",
+        "localName": "కృష్ణుడు"
+      },
+      {
+        "name": "Kurnool",
+        "localName": "కర్నూలు"
+      },
+      {
+        "name": "Prakasam",
+        "localName": "ప్రకాశం"
+      },
+      {
+        "name": "Srikakulam",
+        "localName": "శ్రీకాకుళం"
+      },
+      {
+        "name": "Sri Potti Sriramulu Nellore",
+        "localName": "శ్రీ పొట్టి శ్రీరాములు నెల్లూరు"
+      },
+      {
+        "name": "Visakhapatnam",
+        "localName": "విశాఖపట్నం"
+      },
+      {
+        "name": "Vizianagaram",
+        "localName": "విజయనగరం"
+      },
+      {
+        "name": "West Godavari",
+        "localName": "పశ్చిమ గోదావరి"
+      },
+      {
+        "name": "YSR Kadapa",
+        "localName": "వైఎస్ఆర్ కడప"
+      }
+    ]
+  },
+  {
+    "name": "Arunachal Pradesh",
+    "localName": "अरुणाचल प्रदेश",
+    "languageCode": "hi",
+    "districts": [
+      {
+        "name": "Anjaw",
+        "localName": "अंजाव"
+      },
+      {
+        "name": "Changlang",
+        "localName": "चांगलांग"
+      },
+      {
+        "name": "Dibang Valley",
+        "localName": "दिबांग घाटी"
+      },
+      {
+        "name": "East Kameng",
+        "localName": "पूर्वी कामेंग"
+      },
+      {
+        "name": "East Siang",
+        "localName": "पूर्वी सियांग"
+      },
+      {
+        "name": "Kamle",
+        "localName": "कामले"
+      },
+      {
+        "name": "Kra Daadi",
+        "localName": "क्र दादी"
+      },
+      {
+        "name": "Kurung Kumey",
+        "localName": "कुरुंग कुमेय"
+      },
+      {
+        "name": "Lepa Rada",
+        "localName": "लेपा राडा"
+      },
+      {
+        "name": "Lohit",
+        "localName": "लोहित"
+      },
+      {
+        "name": "Longding",
+        "localName": "लोंगडिंग"
+      },
+      {
+        "name": "Lower Dibang Valley",
+        "localName": "निचली दिबांग घाटी"
+      },
+      {
+        "name": "Lower Siang",
+        "localName": "निचला सियांग"
+      },
+      {
+        "name": "Lower Subansiri",
+        "localName": "निचला सुबनसिरी"
+      },
+      {
+        "name": "Namsai",
+        "localName": "नामसाई"
+      },
+      {
+        "name": "Pakke Kessang",
+        "localName": "पक्के केसांग"
+      },
+      {
+        "name": "Papum Pare",
+        "localName": "पापुम पारे"
+      },
+      {
+        "name": "Shi Yomi",
+        "localName": "शि योमी"
+      },
+      {
+        "name": "Siang",
+        "localName": "सियांग"
+      },
+      {
+        "name": "Tawang",
+        "localName": "तवांग"
+      },
+      {
+        "name": "Tirap",
+        "localName": "तिरप"
+      },
+      {
+        "name": "Upper Siang",
+        "localName": "ऊपरी सियांग"
+      },
+      {
+        "name": "Upper Subansiri",
+        "localName": "ऊपरी सुबनसिरी"
+      },
+      {
+        "name": "West Kameng",
+        "localName": "पश्चिम कामेंग"
+      },
+      {
+        "name": "West Siang",
+        "localName": "पश्चिम सियांग"
+      }
+    ]
+  },
+  {
+    "name": "Assam",
+    "localName": "অসম",
+    "languageCode": "as",
+    "districts": [
+      {
+        "name": "Baksa",
+        "localName": "বাকছা"
+      },
+      {
+        "name": "Barpeta",
+        "localName": "বৰপেটা"
+      },
+      {
+        "name": "Biswanath",
+        "localName": "বিশ্বনাথ"
+      },
+      {
+        "name": "Bongaigaon",
+        "localName": "বঙাইগাঁও"
+      },
+      {
+        "name": "Cachar",
+        "localName": "কাচাৰ"
+      },
+      {
+        "name": "Charaideo",
+        "localName": "চৰাইদেউ"
+      },
+      {
+        "name": "Chirang",
+        "localName": "চিৰাং"
+      },
+      {
+        "name": "Darrang",
+        "localName": "দৰং"
+      },
+      {
+        "name": "Dhemaji",
+        "localName": "ধেমাজি"
+      },
+      {
+        "name": "Dhubri",
+        "localName": "ধুবুৰী"
+      },
+      {
+        "name": "Dibrugarh",
+        "localName": "ডিব্ৰুগড়"
+      },
+      {
+        "name": "Dima Hasao",
+        "localName": "ডিমা হাছাও"
+      },
+      {
+        "name": "Goalpara",
+        "localName": "গোৱালপাৰা"
+      },
+      {
+        "name": "Golaghat",
+        "localName": "গোলাঘাট"
+      },
+      {
+        "name": "Hailakandi",
+        "localName": "হাইলাকান্দি"
+      },
+      {
+        "name": "Hojai",
+        "localName": "হোজাই"
+      },
+      {
+        "name": "Jorhat",
+        "localName": "যোৰহাট"
+      },
+      {
+        "name": "Kamrup",
+        "localName": "কামৰূপ"
+      },
+      {
+        "name": "Kamrup Metropolitan",
+        "localName": "কামৰূপ মহানগৰ"
+      },
+      {
+        "name": "Karbi Anglong",
+        "localName": "কাৰ্বি আংলং"
+      },
+      {
+        "name": "Karimganj",
+        "localName": "কৰিমগঞ্জ"
+      },
+      {
+        "name": "Kokrajhar",
+        "localName": "কোকৰাঝাৰ"
+      },
+      {
+        "name": "Lakhimpur",
+        "localName": "লখিমপুৰ"
+      },
+      {
+        "name": "Majuli",
+        "localName": "মাজুলী"
+      },
+      {
+        "name": "Morigaon",
+        "localName": "মৰিগাঁও"
+      },
+      {
+        "name": "Nagaon",
+        "localName": "নগাঁও"
+      },
+      {
+        "name": "Nalbari",
+        "localName": "নলবাৰী"
+      },
+      {
+        "name": "Sivasagar",
+        "localName": "শিৱসাগৰ"
+      },
+      {
+        "name": "Sonitpur",
+        "localName": "শোণিতপুৰ"
+      },
+      {
+        "name": "South Salmara-Mankachar",
+        "localName": "দক্ষিণ ছালমাৰা-মানকাচৰ"
+      },
+      {
+        "name": "Tinsukia",
+        "localName": "তিনিচুকীয়া"
+      },
+      {
+        "name": "Udalguri",
+        "localName": "উদালগুৰি"
+      },
+      {
+        "name": "West Karbi Anglong",
+        "localName": "পশ্চিম কাৰ্বি আংলং"
+      }
+    ]
+  },
+  {
+    "name": "Bihar",
+    "localName": "बिहार",
+    "languageCode": "hi",
+    "districts": [
+      {
+        "name": "Araria",
+        "localName": "अररिया"
+      },
+      {
+        "name": "Arwal",
+        "localName": "अरवल"
+      },
+      {
+        "name": "Aurangabad",
+        "localName": "औरंगाबाद"
+      },
+      {
+        "name": "Banka",
+        "localName": "बांका"
+      },
+      {
+        "name": "Begusarai",
+        "localName": "बेगूसराय"
+      },
+      {
+        "name": "Bhagalpur",
+        "localName": "भागलपुर"
+      },
+      {
+        "name": "Bhojpur",
+        "localName": "भोजपुर"
+      },
+      {
+        "name": "Buxar",
+        "localName": "बक्सर"
+      },
+      {
+        "name": "Darbhanga",
+        "localName": "दरभंगा"
+      },
+      {
+        "name": "East Champaran",
+        "localName": "पूर्वी चंपारण"
+      },
+      {
+        "name": "Gaya",
+        "localName": "गया"
+      },
+      {
+        "name": "Gopalganj",
+        "localName": "गोपालगंज"
+      },
+      {
+        "name": "Jamui",
+        "localName": "जमुई"
+      },
+      {
+        "name": "Jehanabad",
+        "localName": "जहानाबाद"
+      },
+      {
+        "name": "Kaimur",
+        "localName": "कैमूर"
+      },
+      {
+        "name": "Katihar",
+        "localName": "कटिहार"
+      },
+      {
+        "name": "Khagaria",
+        "localName": "खगरिया"
+      },
+      {
+        "name": "Kishanganj",
+        "localName": "किशनगंज"
+      },
+      {
+        "name": "Lakhisarai",
+        "localName": "लखीसराय"
+      },
+      {
+        "name": "Madhepura",
+        "localName": "मधेपुरा"
+      },
+      {
+        "name": "Madhubani",
+        "localName": "मधुबनी"
+      },
+      {
+        "name": "Munger",
+        "localName": "मुंगेर"
+      },
+      {
+        "name": "Muzaffarpur",
+        "localName": "मुजफ्फरपुर"
+      },
+      {
+        "name": "Nalanda",
+        "localName": "नालन्दा"
+      },
+      {
+        "name": "Nawada",
+        "localName": "नवादा"
+      },
+      {
+        "name": "Patna",
+        "localName": "पटना"
+      },
+      {
+        "name": "Purnia",
+        "localName": "पूर्णिया"
+      },
+      {
+        "name": "Rohtas",
+        "localName": "रोहतास"
+      },
+      {
+        "name": "Saharsa",
+        "localName": "सहरसा"
+      },
+      {
+        "name": "Samastipur",
+        "localName": "समस्तीपुर"
+      },
+      {
+        "name": "Saran",
+        "localName": "सारण"
+      },
+      {
+        "name": "Sheikhpura",
+        "localName": "शेखपुरा"
+      },
+      {
+        "name": "Sheohar",
+        "localName": "शिवहर"
+      },
+      {
+        "name": "Sitamarhi",
+        "localName": "सीतामढ़ी"
+      },
+      {
+        "name": "Siwan",
+        "localName": "सिवान"
+      },
+      {
+        "name": "Supaul",
+        "localName": "सुपौल"
+      },
+      {
+        "name": "Vaishali",
+        "localName": "वैशाली"
+      },
+      {
+        "name": "West Champaran",
+        "localName": "पश्चिमी चंपारण"
+      }
+    ]
+  },
+  {
+    "name": "Chhattisgarh",
+    "localName": "छत्तीसगढ",
+    "languageCode": "hi",
+    "districts": [
+      {
+        "name": "Balod",
+        "localName": "बालोद"
+      },
+      {
+        "name": "Baloda Bazar",
+        "localName": "बलौदाबाजार"
+      },
+      {
+        "name": "Balrampur",
+        "localName": "बलरामपुर"
+      },
+      {
+        "name": "Bastar",
+        "localName": "बस्तर"
+      },
+      {
+        "name": "Bemetara",
+        "localName": "बेमेतरा"
+      },
+      {
+        "name": "Bijapur",
+        "localName": "बीजापुर"
+      },
+      {
+        "name": "Bilaspur",
+        "localName": "बिलासपुर"
+      },
+      {
+        "name": "Dantewada",
+        "localName": "दंतेवाड़ा"
+      },
+      {
+        "name": "Dhamtari",
+        "localName": "धमतरी"
+      },
+      {
+        "name": "Durg",
+        "localName": "दुर्ग"
+      },
+      {
+        "name": "Gariaband",
+        "localName": "गरियाबंद"
+      },
+      {
+        "name": "Gaurela-Pendra-Marwahi",
+        "localName": "गौरेला-पेंड्रा-मरवाही"
+      },
+      {
+        "name": "Janjgir-Champa",
+        "localName": "जांजगीर-चंपा"
+      },
+      {
+        "name": "Jashpur",
+        "localName": "जशपुर"
+      },
+      {
+        "name": "Kabirdham",
+        "localName": "कबीरधाम"
+      },
+      {
+        "name": "Kanker",
+        "localName": "कांकेर"
+      },
+      {
+        "name": "Kondagaon",
+        "localName": "कोंडागांव"
+      },
+      {
+        "name": "Korba",
+        "localName": "कोरबा"
+      },
+      {
+        "name": "Koriya",
+        "localName": "कोरिया"
+      },
+      {
+        "name": "Mahasamund",
+        "localName": "महासमुंद"
+      },
+      {
+        "name": "Mungeli",
+        "localName": "मुंगेली"
+      },
+      {
+        "name": "Narayanpur",
+        "localName": "नारायणपुर"
+      },
+      {
+        "name": "Raigarh",
+        "localName": "रायगढ़"
+      },
+      {
+        "name": "Raipur",
+        "localName": "रायपुर"
+      },
+      {
+        "name": "Rajnandgaon",
+        "localName": "राजनंदगांव"
+      },
+      {
+        "name": "Sukma",
+        "localName": "सुकमा"
+      },
+      {
+        "name": "Surajpur",
+        "localName": "Surajpur"
+      },
+      {
+        "name": "Surguja",
+        "localName": "सरगुजा"
+      }
+    ]
+  },
+  {
+    "name": "Goa",
+    "localName": "गोंय",
+    "languageCode": "kok",
+    "districts": [
+      {
+        "name": "North Goa",
+        "localName": "उत्तर गोंय"
+      },
+      {
+        "name": "South Goa",
+        "localName": "दक्षिण गोंय"
+      }
+    ]
+  },
+  {
+    "name": "Gujarat",
+    "localName": "ગુજરાત",
+    "languageCode": "gu",
+    "districts": [
+      {
+        "name": "Ahmedabad",
+        "localName": "અમદાવાદ"
+      },
+      {
+        "name": "Amreli",
+        "localName": "અમરેલી"
+      },
+      {
+        "name": "Anand",
+        "localName": "આણંદ"
+      },
+      {
+        "name": "Aravalli",
+        "localName": "અરવલ્લી"
+      },
+      {
+        "name": "Banaskantha",
+        "localName": "બનાસકાંઠા"
+      },
+      {
+        "name": "Bharuch",
+        "localName": "ભરૂચ"
+      },
+      {
+        "name": "Bhavnagar",
+        "localName": "ભાવનગર"
+      },
+      {
+        "name": "Botad",
+        "localName": "બોટાદ"
+      },
+      {
+        "name": "Chhota Udaipur",
+        "localName": "છોટા ઉદેપુર"
+      },
+      {
+        "name": "Dahod",
+        "localName": "દાહોદ"
+      },
+      {
+        "name": "Dang",
+        "localName": "ડાંગ"
+      },
+      {
+        "name": "Devbhoomi Dwarka",
+        "localName": "દેવભૂમિ દ્વારકા"
+      },
+      {
+        "name": "Gandhinagar",
+        "localName": "ગાંધીનગર"
+      },
+      {
+        "name": "Gir Somnath",
+        "localName": "ગીર સોમનાથ"
+      },
+      {
+        "name": "Jamnagar",
+        "localName": "જામનગર"
+      },
+      {
+        "name": "Junagadh",
+        "localName": "જૂનાગઢ"
+      },
+      {
+        "name": "Kheda",
+        "localName": "ખેડા"
+      },
+      {
+        "name": "Kutch",
+        "localName": "કચ્છ"
+      },
+      {
+        "name": "Mahisagar",
+        "localName": "મહીસાગર"
+      },
+      {
+        "name": "Mehsana",
+        "localName": "મહેસાણા"
+      },
+      {
+        "name": "Morbi",
+        "localName": "મોરબી"
+      },
+      {
+        "name": "Narmada",
+        "localName": "નર્મદા"
+      },
+      {
+        "name": "Navsari",
+        "localName": "નવસારી"
+      },
+      {
+        "name": "Panchmahal",
+        "localName": "પંચમહાલ"
+      },
+      {
+        "name": "Patan",
+        "localName": "પાટણ"
+      },
+      {
+        "name": "Porbandar",
+        "localName": "પોરબંદર"
+      },
+      {
+        "name": "Rajkot",
+        "localName": "રાજકોટ"
+      },
+      {
+        "name": "Sabarkantha",
+        "localName": "સાબરકાંઠા"
+      },
+      {
+        "name": "Surat",
+        "localName": "સુરત"
+      },
+      {
+        "name": "Surendranagar",
+        "localName": "સુરેન્દ્રનગર"
+      },
+      {
+        "name": "Tapi",
+        "localName": "તાપી"
+      },
+      {
+        "name": "Vadodara",
+        "localName": "વડોદરા"
+      },
+      {
+        "name": "Valsad",
+        "localName": "વલસાડ"
+      }
+    ]
+  },
+  {
+    "name": "Haryana",
+    "localName": "हरयाणा",
+    "languageCode": "hi",
+    "districts": [
+      {
+        "name": "Ambala",
+        "localName": "अम्बाला"
+      },
+      {
+        "name": "Bhiwani",
+        "localName": "भिवानी"
+      },
+      {
+        "name": "Charkhi Dadri",
+        "localName": "चरखी दादरी"
+      },
+      {
+        "name": "Faridabad",
+        "localName": "फरीदाबाद"
+      },
+      {
+        "name": "Fatehabad",
+        "localName": "फतेहाबाद"
+      },
+      {
+        "name": "Gurugram",
+        "localName": "गुरूग्राम"
+      },
+      {
+        "name": "Hisar",
+        "localName": "हिसार"
+      },
+      {
+        "name": "Jhajjar",
+        "localName": "झज्जर"
+      },
+      {
+        "name": "Jind",
+        "localName": "जींद"
+      },
+      {
+        "name": "Kaithal",
+        "localName": "कैथल"
+      },
+      {
+        "name": "Karnal",
+        "localName": "करनाल"
+      },
+      {
+        "name": "Kurukshetra",
+        "localName": "कुरूक्षेत्र"
+      },
+      {
+        "name": "Mahendragarh",
+        "localName": "महेंद्रगढ़"
+      },
+      {
+        "name": "Nuh",
+        "localName": "नूह"
+      },
+      {
+        "name": "Palwal",
+        "localName": "पलवल"
+      },
+      {
+        "name": "Panchkula",
+        "localName": "पंचकुला"
+      },
+      {
+        "name": "Panipat",
+        "localName": "पानीपत"
+      },
+      {
+        "name": "Rewari",
+        "localName": "रेवाड़ी"
+      },
+      {
+        "name": "Rohtak",
+        "localName": "रोहतक"
+      },
+      {
+        "name": "Sirsa",
+        "localName": "सिरसा"
+      },
+      {
+        "name": "Sonipat",
+        "localName": "सोनीपत"
+      },
+      {
+        "name": "Yamunanagar",
+        "localName": "यमुनानगर"
+      }
+    ]
+  },
+  {
+    "name": "Himachal Pradesh",
+    "localName": "हिमाचल प्रदेश",
+    "languageCode": "hi",
+    "districts": [
+      {
+        "name": "Bilaspur",
+        "localName": "बिलासपुर"
+      },
+      {
+        "name": "Chamba",
+        "localName": "चंबा"
+      },
+      {
+        "name": "Hamirpur",
+        "localName": "हमीरपुर"
+      },
+      {
+        "name": "Kangra",
+        "localName": "कांगड़ा"
+      },
+      {
+        "name": "Kinnaur",
+        "localName": "किन्नौर"
+      },
+      {
+        "name": "Kullu",
+        "localName": "कुल्लू"
+      },
+      {
+        "name": "Lahaul and Spiti",
+        "localName": "लाहौल और स्पीति"
+      },
+      {
+        "name": "Mandi",
+        "localName": "मंडी"
+      },
+      {
+        "name": "Shimla",
+        "localName": "शिमला"
+      },
+      {
+        "name": "Sirmaur",
+        "localName": "सिरमौर"
+      },
+      {
+        "name": "Solan",
+        "localName": "एक प्रकार का हंस"
+      },
+      {
+        "name": "Una",
+        "localName": "ऊना"
+      }
+    ]
+  },
+  {
+    "name": "Jharkhand",
+    "localName": "झारखंड",
+    "languageCode": "hi",
+    "districts": [
+      {
+        "name": "Bokaro",
+        "localName": "बोकारो"
+      },
+      {
+        "name": "Chatra",
+        "localName": "चतरा"
+      },
+      {
+        "name": "Deoghar",
+        "localName": "देवघर"
+      },
+      {
+        "name": "Dhanbad",
+        "localName": "धनबाद"
+      },
+      {
+        "name": "Dumka",
+        "localName": "दुमका"
+      },
+      {
+        "name": "East Singhbhum",
+        "localName": "पूर्वी सिंहभूम"
+      },
+      {
+        "name": "Garhwa",
+        "localName": "गढ़वा"
+      },
+      {
+        "name": "Giridih",
+        "localName": "गिरिडीह"
+      },
+      {
+        "name": "Godda",
+        "localName": "गोड्डा"
+      },
+      {
+        "name": "Gumla",
+        "localName": "गुमला"
+      },
+      {
+        "name": "Hazaribagh",
+        "localName": "हजारीबाग"
+      },
+      {
+        "name": "Jamtara",
+        "localName": "जामताड़ा"
+      },
+      {
+        "name": "Khunti",
+        "localName": "खूंटी"
+      },
+      {
+        "name": "Koderma",
+        "localName": "कोडरमा"
+      },
+      {
+        "name": "Latehar",
+        "localName": "लातेहार"
+      },
+      {
+        "name": "Lohardaga",
+        "localName": "लोहरदगा"
+      },
+      {
+        "name": "Pakur",
+        "localName": "पाकुर"
+      },
+      {
+        "name": "Palamu",
+        "localName": "पलामू"
+      },
+      {
+        "name": "Ramgarh",
+        "localName": "रामगढ़"
+      },
+      {
+        "name": "Ranchi",
+        "localName": "रांची"
+      },
+      {
+        "name": "Sahebganj",
+        "localName": "साहेबगंज"
+      },
+      {
+        "name": "Seraikela Kharsawan",
+        "localName": "सरायकेला खरसावां"
+      },
+      {
+        "name": "Simdega",
+        "localName": "सिमडेगा"
+      },
+      {
+        "name": "West Singhbhum",
+        "localName": "पश्चिमी सिंहभूम"
+      }
+    ]
+  },
+  {
+    "name": "Karnataka",
+    "localName": "ಕರ್ನಾಟಕ",
+    "languageCode": "kn",
+    "districts": [
+      {
+        "name": "Bagalkot",
+        "localName": "ಬಾಗಲಕೋಟೆ"
+      },
+      {
+        "name": "Ballari",
+        "localName": "ಬಳ್ಳಾರಿ"
+      },
+      {
+        "name": "Belagavi",
+        "localName": "ಬೆಳಗಾವಿ"
+      },
+      {
+        "name": "Bengaluru Rural",
+        "localName": "ಬೆಂಗಳೂರು ಗ್ರಾಮಾಂತರ"
+      },
+      {
+        "name": "Bengaluru Urban",
+        "localName": "ಬೆಂಗಳೂರು ನಗರ"
+      },
+      {
+        "name": "Bidar",
+        "localName": "ಬೀದರ್"
+      },
+      {
+        "name": "Chamarajanagar",
+        "localName": "ಚಾಮರಾಜನಗರ"
+      },
+      {
+        "name": "Chikkaballapur",
+        "localName": "ಚಿಕ್ಕಬಳ್ಳಾಪುರ"
+      },
+      {
+        "name": "Chikkamagaluru",
+        "localName": "ಚಿಕ್ಕಮಗಳೂರು"
+      },
+      {
+        "name": "Chitradurga",
+        "localName": "ಚಿತ್ರದುರ್ಗ"
+      },
+      {
+        "name": "Dakshina Kannada",
+        "localName": "ದಕ್ಷಿಣ ಕನ್ನಡ"
+      },
+      {
+        "name": "Davanagere",
+        "localName": "ದಾವಣಗೆರೆ"
+      },
+      {
+        "name": "Dharwad",
+        "localName": "ಧಾರವಾಡ"
+      },
+      {
+        "name": "Gadag",
+        "localName": "ಗದಗ"
+      },
+      {
+        "name": "Hassan",
+        "localName": "ಹಾಸನ"
+      },
+      {
+        "name": "Haveri",
+        "localName": "ಹಾವೇರಿ"
+      },
+      {
+        "name": "Kalaburagi",
+        "localName": "ಕಲಬುರಗಿ"
+      },
+      {
+        "name": "Kodagu",
+        "localName": "ಕೊಡಗು"
+      },
+      {
+        "name": "Kolar",
+        "localName": "ಕೋಲಾರ"
+      },
+      {
+        "name": "Koppal",
+        "localName": "ಕೊಪ್ಪಳ"
+      },
+      {
+        "name": "Mandya",
+        "localName": "ಮಂಡ್ಯ"
+      },
+      {
+        "name": "Mysuru",
+        "localName": "ಮೈಸೂರು"
+      },
+      {
+        "name": "Raichur",
+        "localName": "ರಾಯಚೂರು"
+      },
+      {
+        "name": "Ramanagara",
+        "localName": "ರಾಮನಗರ"
+      },
+      {
+        "name": "Shivamogga",
+        "localName": "ಶಿವಮೊಗ್ಗ"
+      },
+      {
+        "name": "Tumakuru",
+        "localName": "ತುಮಕೂರು"
+      },
+      {
+        "name": "Udupi",
+        "localName": "ಉಡುಪಿ"
+      },
+      {
+        "name": "Uttara Kannada",
+        "localName": "ಉತ್ತರ ಕನ್ನಡ"
+      },
+      {
+        "name": "Vijayapura",
+        "localName": "ವಿಜಯಪುರ"
+      },
+      {
+        "name": "Yadgir",
+        "localName": "ಯಾದಗಿರಿ"
+      }
+    ]
+  },
+  {
+    "name": "Kerala",
+    "localName": "കേരളം",
+    "languageCode": "ml",
+    "districts": [
+      {
+        "name": "Alappuzha",
+        "localName": "ആലപ്പുഴ"
+      },
+      {
+        "name": "Ernakulam",
+        "localName": "എറണാകുളം"
+      },
+      {
+        "name": "Idukki",
+        "localName": "ഇടുക്കി"
+      },
+      {
+        "name": "Kannur",
+        "localName": "കണ്ണൂർ"
+      },
+      {
+        "name": "Kasaragod",
+        "localName": "കാസർകോട്"
+      },
+      {
+        "name": "Kollam",
+        "localName": "കൊല്ലം"
+      },
+      {
+        "name": "Kottayam",
+        "localName": "കോട്ടയം"
+      },
+      {
+        "name": "Kozhikode",
+        "localName": "കോഴിക്കോട്"
+      },
+      {
+        "name": "Malappuram",
+        "localName": "മലപ്പുറം"
+      },
+      {
+        "name": "Palakkad",
+        "localName": "പാലക്കാട്"
+      },
+      {
+        "name": "Pathanamthitta",
+        "localName": "പത്തനംതിട്ട"
+      },
+      {
+        "name": "Thiruvananthapuram",
+        "localName": "തിരുവനന്തപുരം"
+      },
+      {
+        "name": "Thrissur",
+        "localName": "തൃശൂർ"
+      },
+      {
+        "name": "Wayanad",
+        "localName": "വയനാട്"
+      }
+    ]
+  },
+  {
+    "name": "Madhya Pradesh",
+    "localName": "मध्य प्रदेश",
+    "languageCode": "hi",
+    "districts": [
+      {
+        "name": "Agar Malwa",
+        "localName": "आगर मालवा"
+      },
+      {
+        "name": "Alirajpur",
+        "localName": "आलीराजपुर"
+      },
+      {
+        "name": "Anuppur",
+        "localName": "अनुपपुर"
+      },
+      {
+        "name": "Ashoknagar",
+        "localName": "अशोकनगर"
+      },
+      {
+        "name": "Balaghat",
+        "localName": "बालाघाट"
+      },
+      {
+        "name": "Barwani",
+        "localName": "बड़वानी"
+      },
+      {
+        "name": "Betul",
+        "localName": "बेतुल"
+      },
+      {
+        "name": "Bhind",
+        "localName": "भिंड"
+      },
+      {
+        "name": "Bhopal",
+        "localName": "भोपाल"
+      },
+      {
+        "name": "Burhanpur",
+        "localName": "बुरहानपुर"
+      },
+      {
+        "name": "Chhatarpur",
+        "localName": "छतरपुर"
+      },
+      {
+        "name": "Chhindwara",
+        "localName": "छिंदवाड़ा"
+      },
+      {
+        "name": "Damoh",
+        "localName": "दमोह"
+      },
+      {
+        "name": "Datia",
+        "localName": "दतिया"
+      },
+      {
+        "name": "Dewas",
+        "localName": "देवास"
+      },
+      {
+        "name": "Dhar",
+        "localName": "धार"
+      },
+      {
+        "name": "Dindori",
+        "localName": "डिंडोरी"
+      },
+      {
+        "name": "Guna",
+        "localName": "गुना"
+      },
+      {
+        "name": "Gwalior",
+        "localName": "ग्वालियर"
+      },
+      {
+        "name": "Harda",
+        "localName": "हरदा"
+      },
+      {
+        "name": "Hoshangabad",
+        "localName": "होशंगाबाद"
+      },
+      {
+        "name": "Indore",
+        "localName": "इंदौर"
+      },
+      {
+        "name": "Jabalpur",
+        "localName": "जबलपुर"
+      },
+      {
+        "name": "Jhabua",
+        "localName": "झाबुआ"
+      },
+      {
+        "name": "Katni",
+        "localName": "कटनी"
+      },
+      {
+        "name": "Khandwa",
+        "localName": "खंडवा"
+      },
+      {
+        "name": "Khargone",
+        "localName": "खरगोन"
+      },
+      {
+        "name": "Mandla",
+        "localName": "मंडला"
+      },
+      {
+        "name": "Mandsaur",
+        "localName": "मन्दसौर"
+      },
+      {
+        "name": "Morena",
+        "localName": "मुरैना"
+      },
+      {
+        "name": "Narsinghpur",
+        "localName": "नरसिंहपुर"
+      },
+      {
+        "name": "Neemuch",
+        "localName": "नीमच"
+      },
+      {
+        "name": "Niwari",
+        "localName": "निवाड़ी"
+      },
+      {
+        "name": "Panna",
+        "localName": "पन्ना"
+      },
+      {
+        "name": "Raisen",
+        "localName": "रायसेन"
+      },
+      {
+        "name": "Rajgarh",
+        "localName": "राजगढ़"
+      },
+      {
+        "name": "Ratlam",
+        "localName": "रतलाम"
+      },
+      {
+        "name": "Rewa",
+        "localName": "रीवा"
+      },
+      {
+        "name": "Sagar",
+        "localName": "सागर"
+      },
+      {
+        "name": "Satna",
+        "localName": "सतना"
+      },
+      {
+        "name": "Sehore",
+        "localName": "सीहोर"
+      },
+      {
+        "name": "Seoni",
+        "localName": "सिवनी"
+      },
+      {
+        "name": "Shahdol",
+        "localName": "शाहडोल"
+      },
+      {
+        "name": "Shajapur",
+        "localName": "शाजापुर"
+      },
+      {
+        "name": "Sheopur",
+        "localName": "श्योपुर"
+      },
+      {
+        "name": "Shivpuri",
+        "localName": "शिवपुरी"
+      },
+      {
+        "name": "Sidhi",
+        "localName": "सीधी"
+      },
+      {
+        "name": "Singrauli",
+        "localName": "सिंगरौली"
+      },
+      {
+        "name": "Tikamgarh",
+        "localName": "टीकमगढ़"
+      },
+      {
+        "name": "Ujjain",
+        "localName": "उज्जैन"
+      },
+      {
+        "name": "Umaria",
+        "localName": "उमरिया"
+      },
+      {
+        "name": "Vidisha",
+        "localName": "विदिशा"
+      }
+    ]
+  },
+  {
+    "name": "Maharashtra",
+    "localName": "महाराष्ट्र",
+    "languageCode": "mr",
+    "districts": [
+      {
+        "name": "Ahmednagar",
+        "localName": "अहमदनगर"
+      },
+      {
+        "name": "Akola",
+        "localName": "अकोला"
+      },
+      {
+        "name": "Amravati",
+        "localName": "अमरावती"
+      },
+      {
+        "name": "Aurangabad",
+        "localName": "औरंगाबाद"
+      },
+      {
+        "name": "Beed",
+        "localName": "बीड"
+      },
+      {
+        "name": "Bhandara",
+        "localName": "भंडारा"
+      },
+      {
+        "name": "Buldhana",
+        "localName": "बुलढाणा"
+      },
+      {
+        "name": "Chandrapur",
+        "localName": "चंद्रपूर"
+      },
+      {
+        "name": "Dhule",
+        "localName": "धुळे"
+      },
+      {
+        "name": "Gadchiroli",
+        "localName": "गडचिरोली"
+      },
+      {
+        "name": "Gondia",
+        "localName": "गोंदिया"
+      },
+      {
+        "name": "Hingoli",
+        "localName": "हिंगोली"
+      },
+      {
+        "name": "Jalgaon",
+        "localName": "जळगाव"
+      },
+      {
+        "name": "Jalna",
+        "localName": "जालना"
+      },
+      {
+        "name": "Kolhapur",
+        "localName": "कोल्हापूर"
+      },
+      {
+        "name": "Latur",
+        "localName": "लातूर"
+      },
+      {
+        "name": "Mumbai City",
+        "localName": "मुंबई शहर"
+      },
+      {
+        "name": "Mumbai Suburban",
+        "localName": "मुंबई उपनगर"
+      },
+      {
+        "name": "Nagpur",
+        "localName": "नागपूर"
+      },
+      {
+        "name": "Nanded",
+        "localName": "नांदेड"
+      },
+      {
+        "name": "Nandurbar",
+        "localName": "नंदुरबार"
+      },
+      {
+        "name": "Nashik",
+        "localName": "नाशिक"
+      },
+      {
+        "name": "Osmanabad",
+        "localName": "उस्मानाबाद"
+      },
+      {
+        "name": "Palghar",
+        "localName": "पालघर"
+      },
+      {
+        "name": "Parbhani",
+        "localName": "परभणी"
+      },
+      {
+        "name": "Pune",
+        "localName": "पुणे"
+      },
+      {
+        "name": "Raigad",
+        "localName": "रायगड"
+      },
+      {
+        "name": "Ratnagiri",
+        "localName": "रत्नागिरी"
+      },
+      {
+        "name": "Sangli",
+        "localName": "सांगली"
+      },
+      {
+        "name": "Satara",
+        "localName": "सातारा"
+      },
+      {
+        "name": "Sindhudurg",
+        "localName": "सिंधुदुर्ग"
+      },
+      {
+        "name": "Solapur",
+        "localName": "सोलापूर"
+      },
+      {
+        "name": "Thane",
+        "localName": "ठाणे"
+      },
+      {
+        "name": "Wardha",
+        "localName": "वर्धा"
+      },
+      {
+        "name": "Washim",
+        "localName": "वाशिम"
+      },
+      {
+        "name": "Yavatmal",
+        "localName": "यवतमाळ"
+      }
+    ]
+  },
+  {
+    "name": "Manipur",
+    "localName": "मणिपुर",
+    "languageCode": "hi",
+    "districts": [
+      {
+        "name": "Bishnupur",
+        "localName": "बिश्नुपुर"
+      },
+      {
+        "name": "Chandel",
+        "localName": "चंदेल"
+      },
+      {
+        "name": "Churachandpur",
+        "localName": "छुरछंदपुर"
+      },
+      {
+        "name": "Imphal East",
+        "localName": "इंफाल पूर्व"
+      },
+      {
+        "name": "Imphal West",
+        "localName": "इंफाल पश्चिम"
+      },
+      {
+        "name": "Jiribam",
+        "localName": "जिरीबाम"
+      },
+      {
+        "name": "Kakching",
+        "localName": "काकचिंग"
+      },
+      {
+        "name": "Kamjong",
+        "localName": "कामजोंग"
+      },
+      {
+        "name": "Kangpokpi",
+        "localName": "कांगपोकपी"
+      },
+      {
+        "name": "Noney",
+        "localName": "नोनी"
+      },
+      {
+        "name": "Pherzawl",
+        "localName": "Pherzawl"
+      },
+      {
+        "name": "Senapati",
+        "localName": "सेनापति"
+      },
+      {
+        "name": "Tamenglong",
+        "localName": "तामेंगलांग"
+      },
+      {
+        "name": "Tengnoupal",
+        "localName": "टेंग्नौपाल"
+      },
+      {
+        "name": "Thoubal",
+        "localName": "थौबल"
+      },
+      {
+        "name": "Ukhrul",
+        "localName": "उखरूल"
+      }
+    ]
+  },
+  {
+    "name": "Meghalaya",
+    "localName": "मेघालय",
+    "languageCode": "hi",
+    "districts": [
+      {
+        "name": "East Garo Hills",
+        "localName": "पूर्वी गारो हिल्स"
+      },
+      {
+        "name": "East Jaintia Hills",
+        "localName": "पूर्वी जैंतिया हिल्स"
+      },
+      {
+        "name": "East Khasi Hills",
+        "localName": "पूर्वी खासी हिल्स"
+      },
+      {
+        "name": "North Garo Hills",
+        "localName": "उत्तरी गारो हिल्स"
+      },
+      {
+        "name": "Ri Bhoi",
+        "localName": "री भोई"
+      },
+      {
+        "name": "South Garo Hills",
+        "localName": "दक्षिण गारो हिल्स"
+      },
+      {
+        "name": "South West Garo Hills",
+        "localName": "दक्षिण पश्चिम गारो हिल्स"
+      },
+      {
+        "name": "South West Khasi Hills",
+        "localName": "दक्षिण पश्चिम खासी पहाड़ियाँ"
+      },
+      {
+        "name": "West Garo Hills",
+        "localName": "पश्चिम गारो हिल्स"
+      },
+      {
+        "name": "West Jaintia Hills",
+        "localName": "पश्चिम जैंतिया हिल्स"
+      },
+      {
+        "name": "West Khasi Hills",
+        "localName": "पश्चिम खासी हिल्स"
+      }
+    ]
+  },
+  {
+    "name": "Mizoram",
+    "localName": "मिजोरम",
+    "languageCode": "hi",
+    "districts": [
+      {
+        "name": "Aizawl",
+        "localName": "आइजोल"
+      },
+      {
+        "name": "Champhai",
+        "localName": "चम्फाई"
+      },
+      {
+        "name": "Hnahthial",
+        "localName": "हनाथियाल"
+      },
+      {
+        "name": "Khawzawl",
+        "localName": "ख्वाज़ावल"
+      },
+      {
+        "name": "Kolasib",
+        "localName": "कोलासिब"
+      },
+      {
+        "name": "Lawngtlai",
+        "localName": "लॉन्गत्लाई"
+      },
+      {
+        "name": "Lunglei",
+        "localName": "लुंगलेई"
+      },
+      {
+        "name": "Mamit",
+        "localName": "मामित"
+      },
+      {
+        "name": "Saiha",
+        "localName": "सैहा"
+      },
+      {
+        "name": "Saitual",
+        "localName": "सैतुअल"
+      },
+      {
+        "name": "Serchhip",
+        "localName": "सेरछिप"
+      }
+    ]
+  },
+  {
+    "name": "Nagaland",
+    "localName": "नगालैंड",
+    "languageCode": "hi",
+    "districts": [
+      {
+        "name": "Chumukedima",
+        "localName": "चुमुकेदिमा"
+      },
+      {
+        "name": "Dimapur",
+        "localName": "दीमापुर"
+      },
+      {
+        "name": "Kiphire",
+        "localName": "किफायर"
+      },
+      {
+        "name": "Kohima",
+        "localName": "कोहिमा"
+      },
+      {
+        "name": "Longleng",
+        "localName": "लोंगलेंग"
+      },
+      {
+        "name": "Mokokchung",
+        "localName": "मोकोकचुंग"
+      },
+      {
+        "name": "Mon",
+        "localName": "सोम"
+      },
+      {
+        "name": "Noklak",
+        "localName": "नोक्लाक"
+      },
+      {
+        "name": "Peren",
+        "localName": "पेरेन"
+      },
+      {
+        "name": "Phek",
+        "localName": "फ़ेक"
+      },
+      {
+        "name": "Tseminyu",
+        "localName": "त्सेमिन्यु"
+      },
+      {
+        "name": "Tuensang",
+        "localName": "तुएनसांग"
+      },
+      {
+        "name": "Wokha",
+        "localName": "वोखा"
+      },
+      {
+        "name": "Zunheboto",
+        "localName": "जुन्हेबोटो"
+      }
+    ]
+  },
+  {
+    "name": "Odisha",
+    "localName": "ଓଡ଼ିଶା",
+    "languageCode": "or",
+    "districts": [
+      {
+        "name": "Angul",
+        "localName": "ଅଙ୍ଗୁଲ |"
+      },
+      {
+        "name": "Balangir",
+        "localName": "ବାଲାଙ୍ଗୀର"
+      },
+      {
+        "name": "Balasore",
+        "localName": "ବାଲାସୋର |"
+      },
+      {
+        "name": "Bargarh",
+        "localName": "ବରଗଡ |"
+      },
+      {
+        "name": "Bhadrak",
+        "localName": "ଭଦ୍ରକ"
+      },
+      {
+        "name": "Boudh",
+        "localName": "Boudh"
+      },
+      {
+        "name": "Cuttack",
+        "localName": "କଟକ |"
+      },
+      {
+        "name": "Debagarh",
+        "localName": "ଦେବଗର"
+      },
+      {
+        "name": "Dhenkanal",
+        "localName": "Hen େଙ୍କାନାଳ |"
+      },
+      {
+        "name": "Gajapati",
+        "localName": "ଗଜପତି"
+      },
+      {
+        "name": "Ganjam",
+        "localName": "ଗଞ୍ଜାମ"
+      },
+      {
+        "name": "Jagatsinghpur",
+        "localName": "ଜଗତ୍ସିଂହପୁର |"
+      },
+      {
+        "name": "Jajpur",
+        "localName": "ଜଜପୁର"
+      },
+      {
+        "name": "Jharsuguda",
+        "localName": "H ାରସୁଗୁଡା |"
+      },
+      {
+        "name": "Kalahandi",
+        "localName": "କାଲାହାଣ୍ଡି"
+      },
+      {
+        "name": "Kandhamal",
+        "localName": "କାନ୍ଧମାଲ |"
+      },
+      {
+        "name": "Kendrapara",
+        "localName": "କେନ୍ଦ୍ରାପଡା |"
+      },
+      {
+        "name": "Kendujhar",
+        "localName": "କେନ୍ଦୁ uj ର"
+      },
+      {
+        "name": "Khordha",
+        "localName": "ଖୋର୍ଧା |"
+      },
+      {
+        "name": "Koraput",
+        "localName": "କୋରାପୁଟ |"
+      },
+      {
+        "name": "Malkangiri",
+        "localName": "ମାଲକାନଗିରି |"
+      },
+      {
+        "name": "Mayurbhanj",
+        "localName": "ମୟୂରଭଞ୍ଜ"
+      },
+      {
+        "name": "Nabarangpur",
+        "localName": "ନବରଙ୍ଗପୁର |"
+      },
+      {
+        "name": "Nayagarh",
+        "localName": "ନୟାଗଡ଼"
+      },
+      {
+        "name": "Nuapada",
+        "localName": "ନୁଆପଡା |"
+      },
+      {
+        "name": "Puri",
+        "localName": "ପୁରୀ"
+      },
+      {
+        "name": "Rayagada",
+        "localName": "ରାୟାଗଡା |"
+      },
+      {
+        "name": "Sambalpur",
+        "localName": "ସମ୍ବଲପୁର"
+      },
+      {
+        "name": "Subarnapur",
+        "localName": "ସୁବର୍ଣ୍ଣପୁର"
+      },
+      {
+        "name": "Sundargarh",
+        "localName": "ସୁନ୍ଦରଗଡ"
+      }
+    ]
+  },
+  {
+    "name": "Punjab",
+    "localName": "ਪੰਜਾਬ",
+    "languageCode": "pa",
+    "districts": [
+      {
+        "name": "Amritsar",
+        "localName": "ਅੰਮ੍ਰਿਤਸਰ"
+      },
+      {
+        "name": "Barnala",
+        "localName": "ਬਰਨਾਲਾ"
+      },
+      {
+        "name": "Bathinda",
+        "localName": "ਬਠਿੰਡਾ"
+      },
+      {
+        "name": "Faridkot",
+        "localName": "ਫਰੀਦਕੋਟ"
+      },
+      {
+        "name": "Fatehgarh Sahib",
+        "localName": "ਫਤਿਹਗੜ੍ਹ ਸਾਹਿਬ"
+      },
+      {
+        "name": "Fazilka",
+        "localName": "ਫਾਜ਼ਿਲਕਾ"
+      },
+      {
+        "name": "Ferozepur",
+        "localName": "ਫਿਰੋਜ਼ਪੁਰ"
+      },
+      {
+        "name": "Gurdaspur",
+        "localName": "ਗੁਰਦਾਸਪੁਰ"
+      },
+      {
+        "name": "Hoshiarpur",
+        "localName": "ਹੁਸ਼ਿਆਰਪੁਰ"
+      },
+      {
+        "name": "Jalandhar",
+        "localName": "ਜਲੰਧਰ"
+      },
+      {
+        "name": "Kapurthala",
+        "localName": "ਕਪੂਰਥਲਾ"
+      },
+      {
+        "name": "Ludhiana",
+        "localName": "ਲੁਧਿਆਣਾ"
+      },
+      {
+        "name": "Mansa",
+        "localName": "ਮਾਨਸਾ"
+      },
+      {
+        "name": "Moga",
+        "localName": "ਮੋਗਾ"
+      },
+      {
+        "name": "Mohali",
+        "localName": "ਮੋਹਾਲੀ"
+      },
+      {
+        "name": "Muktsar",
+        "localName": "ਮੁਕਤਸਰ"
+      },
+      {
+        "name": "Pathankot",
+        "localName": "ਪਠਾਨਕੋਟ"
+      },
+      {
+        "name": "Patiala",
+        "localName": "ਪਟਿਆਲਾ"
+      },
+      {
+        "name": "Rupnagar",
+        "localName": "ਰੂਪਨਗਰ"
+      },
+      {
+        "name": "Sangrur",
+        "localName": "ਸੰਗਰੂਰ"
+      },
+      {
+        "name": "Shaheed Bhagat Singh Nagar",
+        "localName": "ਸ਼ਹੀਦ ਭਗਤ ਸਿੰਘ ਨਗਰ"
+      },
+      {
+        "name": "Tarn Taran",
+        "localName": "ਤਰਨਤਾਰਨ"
+      }
+    ]
+  },
+  {
+    "name": "Rajasthan",
+    "localName": "राजस्थान",
+    "languageCode": "hi",
+    "districts": [
+      {
+        "name": "Ajmer",
+        "localName": "अजमेर"
+      },
+      {
+        "name": "Alwar",
+        "localName": "अलवर"
+      },
+      {
+        "name": "Banswara",
+        "localName": "बांसवाड़ा"
+      },
+      {
+        "name": "Baran",
+        "localName": "बारां"
+      },
+      {
+        "name": "Barmer",
+        "localName": "बाड़मेर"
+      },
+      {
+        "name": "Bharatpur",
+        "localName": "भरतपुर"
+      },
+      {
+        "name": "Bhilwara",
+        "localName": "भीलवाड़ा"
+      },
+      {
+        "name": "Bikaner",
+        "localName": "बीकानेर"
+      },
+      {
+        "name": "Bundi",
+        "localName": "बूंदी"
+      },
+      {
+        "name": "Chittorgarh",
+        "localName": "चित्तौड़गढ़"
+      },
+      {
+        "name": "Churu",
+        "localName": "चुरू"
+      },
+      {
+        "name": "Dausa",
+        "localName": "दौसा"
+      },
+      {
+        "name": "Dholpur",
+        "localName": "धौलपुर"
+      },
+      {
+        "name": "Dungarpur",
+        "localName": "डूंगरपुर"
+      },
+      {
+        "name": "Hanumangarh",
+        "localName": "हनुमानगढ़"
+      },
+      {
+        "name": "Jaipur",
+        "localName": "जयपुर"
+      },
+      {
+        "name": "Jaisalmer",
+        "localName": "जैसलमेर"
+      },
+      {
+        "name": "Jalore",
+        "localName": "जालौर"
+      },
+      {
+        "name": "Jhalawar",
+        "localName": "झालावाड़"
+      },
+      {
+        "name": "Jhunjhunu",
+        "localName": "झुंझुनूं"
+      },
+      {
+        "name": "Jodhpur",
+        "localName": "जोधपुर"
+      },
+      {
+        "name": "Karauli",
+        "localName": "करौली"
+      },
+      {
+        "name": "Kota",
+        "localName": "कोटा"
+      },
+      {
+        "name": "Nagaur",
+        "localName": "नागौर"
+      },
+      {
+        "name": "Pali",
+        "localName": "पाली"
+      },
+      {
+        "name": "Pratapgarh",
+        "localName": "प्रतापगढ़"
+      },
+      {
+        "name": "Rajsamand",
+        "localName": "राजसमंद"
+      },
+      {
+        "name": "Sawai Madhopur",
+        "localName": "सवाई माधोपुर"
+      },
+      {
+        "name": "Sikar",
+        "localName": "सीकर"
+      },
+      {
+        "name": "Sirohi",
+        "localName": "सिरोही"
+      },
+      {
+        "name": "Sri Ganganagar",
+        "localName": "श्रीगंगानगर"
+      },
+      {
+        "name": "Tonk",
+        "localName": "टोंक"
+      },
+      {
+        "name": "Udaipur",
+        "localName": "उदयपुर"
+      }
+    ]
+  },
+  {
+    "name": "Sikkim",
+    "localName": "सिक्किम",
+    "languageCode": "hi",
+    "districts": [
+      {
+        "name": "East Sikkim",
+        "localName": "पूर्वी सिक्किम"
+      },
+      {
+        "name": "North Sikkim",
+        "localName": "उत्तरी सिक्किम"
+      },
+      {
+        "name": "South Sikkim",
+        "localName": "दक्षिण सिक्किम"
+      },
+      {
+        "name": "West Sikkim",
+        "localName": "पश्चिम सिक्किम"
+      }
+    ]
+  },
+  {
+    "name": "Tamil Nadu",
+    "localName": "தமிழ்நாடு",
+    "languageCode": "ta",
+    "districts": [
+      {
+        "name": "Ariyalur",
+        "localName": "அரியலூர்"
+      },
+      {
+        "name": "Chengalpattu",
+        "localName": "செங்கல்பட்டு"
+      },
+      {
+        "name": "Chennai",
+        "localName": "சென்னை"
+      },
+      {
+        "name": "Coimbatore",
+        "localName": "கோயம்புத்தூர்"
+      },
+      {
+        "name": "Cuddalore",
+        "localName": "கடலூர்"
+      },
+      {
+        "name": "Dharmapuri",
+        "localName": "தருமபுரி"
+      },
+      {
+        "name": "Dindigul",
+        "localName": "திண்டுக்கல்"
+      },
+      {
+        "name": "Erode",
+        "localName": "ஈரோடு"
+      },
+      {
+        "name": "Kallakurichi",
+        "localName": "கள்ளக்குறிச்சி"
+      },
+      {
+        "name": "Kanchipuram",
+        "localName": "காஞ்சிபுரம்"
+      },
+      {
+        "name": "Kanyakumari",
+        "localName": "கன்னியாகுமரி"
+      },
+      {
+        "name": "Karur",
+        "localName": "கரூர்"
+      },
+      {
+        "name": "Krishnagiri",
+        "localName": "கிருஷ்ணகிரி"
+      },
+      {
+        "name": "Madurai",
+        "localName": "மதுரை"
+      },
+      {
+        "name": "Mayiladuthurai",
+        "localName": "மயிலாடுதுறை"
+      },
+      {
+        "name": "Nagapattinam",
+        "localName": "நாகப்பட்டினம்"
+      },
+      {
+        "name": "Namakkal",
+        "localName": "நாமக்கல்"
+      },
+      {
+        "name": "Nilgiris",
+        "localName": "நீலகிரி"
+      },
+      {
+        "name": "Perambalur",
+        "localName": "பெரம்பலூர்"
+      },
+      {
+        "name": "Pudukkottai",
+        "localName": "புதுக்கோட்டை"
+      },
+      {
+        "name": "Ramanathapuram",
+        "localName": "ராமநாதபுரம்"
+      },
+      {
+        "name": "Ranipet",
+        "localName": "ராணிப்பேட்டை"
+      },
+      {
+        "name": "Salem",
+        "localName": "சேலம்"
+      },
+      {
+        "name": "Sivaganga",
+        "localName": "சிவகங்கை"
+      },
+      {
+        "name": "Tenkasi",
+        "localName": "தென்காசி"
+      },
+      {
+        "name": "Thanjavur",
+        "localName": "தஞ்சாவூர்"
+      },
+      {
+        "name": "Theni",
+        "localName": "தேனி"
+      },
+      {
+        "name": "Thoothukudi",
+        "localName": "தூத்துக்குடி"
+      },
+      {
+        "name": "Tiruchirappalli",
+        "localName": "திருச்சிராப்பள்ளி"
+      },
+      {
+        "name": "Tirunelveli",
+        "localName": "திருநெல்வேலி"
+      },
+      {
+        "name": "Tirupathur",
+        "localName": "திருப்பத்தூர்"
+      },
+      {
+        "name": "Tiruppur",
+        "localName": "திருப்பூர்"
+      },
+      {
+        "name": "Tiruvallur",
+        "localName": "திருவள்ளூர்"
+      },
+      {
+        "name": "Tiruvannamalai",
+        "localName": "திருவண்ணாமலை"
+      },
+      {
+        "name": "Tiruvarur",
+        "localName": "திருவாரூர்"
+      },
+      {
+        "name": "Vellore",
+        "localName": "வேலூர்"
+      },
+      {
+        "name": "Viluppuram",
+        "localName": "விழுப்புரம்"
+      },
+      {
+        "name": "Virudhunagar",
+        "localName": "விருதுநகர்"
+      }
+    ]
+  },
+  {
+    "name": "Telangana",
+    "localName": "తెలంగాణ",
+    "languageCode": "te",
+    "districts": [
+      {
+        "name": "Adilabad",
+        "localName": "ఆదిలాబాద్"
+      },
+      {
+        "name": "Bhadradri Kothagudem",
+        "localName": "భద్రాద్రి కొత్తగూడెం"
+      },
+      {
+        "name": "Hyderabad",
+        "localName": "హైదరాబాద్"
+      },
+      {
+        "name": "Jagtial",
+        "localName": "జగిత్యాల్"
+      },
+      {
+        "name": "Jangaon",
+        "localName": "జనగాం"
+      },
+      {
+        "name": "Jayashankar Bhupalpally",
+        "localName": "జయశంకర్ భూపాలపల్లి"
+      },
+      {
+        "name": "Jogulamba Gadwal",
+        "localName": "జోగులాంబ గద్వాల్"
+      },
+      {
+        "name": "Kamareddy",
+        "localName": "కామారెడ్డి"
+      },
+      {
+        "name": "Karimnagar",
+        "localName": "కరీంనగర్"
+      },
+      {
+        "name": "Khammam",
+        "localName": "ఖమ్మం"
+      },
+      {
+        "name": "Komaram Bheem",
+        "localName": "కొమరం భీమ్"
+      },
+      {
+        "name": "Mahabubabad",
+        "localName": "మహబూబాబాద్"
+      },
+      {
+        "name": "Mahabubnagar",
+        "localName": "మహబూబ్ నగర్"
+      },
+      {
+        "name": "Mancherial",
+        "localName": "మంచిరియల్"
+      },
+      {
+        "name": "Medak",
+        "localName": "మెదక్"
+      },
+      {
+        "name": "Medchal-Malkajgiri",
+        "localName": "మేడ్చల్-మల్కాజిగిరి"
+      },
+      {
+        "name": "Mulugu",
+        "localName": "ములుగు"
+      },
+      {
+        "name": "Nagarkurnool",
+        "localName": "నాగర్ కర్నూల్"
+      },
+      {
+        "name": "Nalgonda",
+        "localName": "నల్గొండ"
+      },
+      {
+        "name": "Narayanpet",
+        "localName": "నారాయణపేట"
+      },
+      {
+        "name": "Nirmal",
+        "localName": "నిర్మల్"
+      },
+      {
+        "name": "Nizamabad",
+        "localName": "నిజామాబాద్"
+      },
+      {
+        "name": "Peddapalli",
+        "localName": "పెద్దపల్లి"
+      },
+      {
+        "name": "Rajanna Sircilla",
+        "localName": "రాజన్న సిరిసిల్ల"
+      },
+      {
+        "name": "Ranga Reddy",
+        "localName": "రంగా రెడ్డి"
+      },
+      {
+        "name": "Sangareddy",
+        "localName": "సంగారెడ్డి"
+      },
+      {
+        "name": "Siddipet",
+        "localName": "సిద్దిపేట"
+      },
+      {
+        "name": "Suryapet",
+        "localName": "సూర్యాపేట"
+      },
+      {
+        "name": "Vikarabad",
+        "localName": "వికారాబాద్"
+      },
+      {
+        "name": "Wanaparthy",
+        "localName": "వనపర్తి"
+      },
+      {
+        "name": "Warangal Rural",
+        "localName": "వరంగల్ రూరల్"
+      },
+      {
+        "name": "Warangal Urban",
+        "localName": "వరంగల్ అర్బన్"
+      },
+      {
+        "name": "Yadadri Bhuvanagiri",
+        "localName": "యాదాద్రి భువనగిరి"
+      }
+    ]
+  },
+  {
+    "name": "Tripura",
+    "localName": "त्रिपुरा",
+    "languageCode": "hi",
+    "districts": [
+      {
+        "name": "Dhalai",
+        "localName": "धलाई"
+      },
+      {
+        "name": "Gomati",
+        "localName": "गोमती"
+      },
+      {
+        "name": "Khowai",
+        "localName": "खोवाई"
+      },
+      {
+        "name": "North Tripura",
+        "localName": "उत्तरी त्रिपुरा"
+      },
+      {
+        "name": "Sepahijala",
+        "localName": "सिपाहीजला"
+      },
+      {
+        "name": "South Tripura",
+        "localName": "दक्षिण त्रिपुरा"
+      },
+      {
+        "name": "Unakoti",
+        "localName": "Unakoti"
+      },
+      {
+        "name": "West Tripura",
+        "localName": "पश्चिम त्रिपुरा"
+      }
+    ]
+  },
+  {
+    "name": "Uttar Pradesh",
+    "localName": "उतार प्रदेश।",
+    "languageCode": "hi",
+    "districts": [
+      {
+        "name": "Agra",
+        "localName": "आगरा"
+      },
+      {
+        "name": "Aligarh",
+        "localName": "अलीगढ"
+      },
+      {
+        "name": "Ambedkar Nagar",
+        "localName": "अंबेडकरनगर"
+      },
+      {
+        "name": "Amethi",
+        "localName": "अमेठी"
+      },
+      {
+        "name": "Amroha",
+        "localName": "अमरोहा"
+      },
+      {
+        "name": "Auraiya",
+        "localName": "औरैया"
+      },
+      {
+        "name": "Ayodhya",
+        "localName": "अयोध्या"
+      },
+      {
+        "name": "Azamgarh",
+        "localName": "आजमगढ़"
+      },
+      {
+        "name": "Baghpat",
+        "localName": "बागपत"
+      },
+      {
+        "name": "Bahraich",
+        "localName": "बहराईच"
+      },
+      {
+        "name": "Ballia",
+        "localName": "बलिया"
+      },
+      {
+        "name": "Balrampur",
+        "localName": "बलरामपुर"
+      },
+      {
+        "name": "Banda",
+        "localName": "बाँदा"
+      },
+      {
+        "name": "Barabanki",
+        "localName": "बाराबंकी"
+      },
+      {
+        "name": "Bareilly",
+        "localName": "बरेली"
+      },
+      {
+        "name": "Basti",
+        "localName": "बस्ती"
+      },
+      {
+        "name": "Bhadohi",
+        "localName": "भदोही"
+      },
+      {
+        "name": "Bijnor",
+        "localName": "बिजनौर"
+      },
+      {
+        "name": "Budaun",
+        "localName": "शाहजहांपुर"
+      },
+      {
+        "name": "Bulandshahr",
+        "localName": "बुलन्दशहर"
+      },
+      {
+        "name": "Chandauli",
+        "localName": "चंदौली"
+      },
+      {
+        "name": "Chitrakoot",
+        "localName": "चित्रकूट"
+      },
+      {
+        "name": "Deoria",
+        "localName": "देवरिया"
+      },
+      {
+        "name": "Etah",
+        "localName": "एटा"
+      },
+      {
+        "name": "Etawah",
+        "localName": "इटावा"
+      },
+      {
+        "name": "Farrukhabad",
+        "localName": "फर्रुखाबाद"
+      },
+      {
+        "name": "Fatehpur",
+        "localName": "फ़तेहपुर"
+      },
+      {
+        "name": "Firozabad",
+        "localName": "फिरोजाबाद"
+      },
+      {
+        "name": "Gautam Buddha Nagar",
+        "localName": "गौतमबुद्धनगर"
+      },
+      {
+        "name": "Ghaziabad",
+        "localName": "गाजियाबाद"
+      },
+      {
+        "name": "Ghazipur",
+        "localName": "गाजीपुर"
+      },
+      {
+        "name": "Gonda",
+        "localName": "गोंडा"
+      },
+      {
+        "name": "Gorakhpur",
+        "localName": "गोरखपुर"
+      },
+      {
+        "name": "Hamirpur",
+        "localName": "हमीरपुर"
+      },
+      {
+        "name": "Hapur",
+        "localName": "हापुड"
+      },
+      {
+        "name": "Hardoi",
+        "localName": "हरदोई"
+      },
+      {
+        "name": "Hathras",
+        "localName": "हाथरस"
+      },
+      {
+        "name": "Jalaun",
+        "localName": "जालौन"
+      },
+      {
+        "name": "Jaunpur",
+        "localName": "जौनपुर"
+      },
+      {
+        "name": "Jhansi",
+        "localName": "झांसी"
+      },
+      {
+        "name": "Kannauj",
+        "localName": "कन्नौज"
+      },
+      {
+        "name": "Kanpur Dehat",
+        "localName": "कानपुर देहात"
+      },
+      {
+        "name": "Kanpur Nagar",
+        "localName": "कानपुर नगर"
+      },
+      {
+        "name": "Kasganj",
+        "localName": "कासगंज"
+      },
+      {
+        "name": "Kaushambi",
+        "localName": "कौशांबी"
+      },
+      {
+        "name": "Kushinagar",
+        "localName": "कुशीनगर"
+      },
+      {
+        "name": "Lakhimpur Kheri",
+        "localName": "लखीमपुर खीरी"
+      },
+      {
+        "name": "Lalitpur",
+        "localName": "Lalitpur"
+      },
+      {
+        "name": "Lucknow",
+        "localName": "लखनऊ"
+      },
+      {
+        "name": "Maharajganj",
+        "localName": "महाराजगंज"
+      },
+      {
+        "name": "Mahoba",
+        "localName": "महोबा"
+      },
+      {
+        "name": "Mainpuri",
+        "localName": "मैनपुरी"
+      },
+      {
+        "name": "Mathura",
+        "localName": "मथुरा"
+      },
+      {
+        "name": "Mau",
+        "localName": "मऊ"
+      },
+      {
+        "name": "Meerut",
+        "localName": "मेरठ"
+      },
+      {
+        "name": "Mirzapur",
+        "localName": "मिर्जापुर"
+      },
+      {
+        "name": "Moradabad",
+        "localName": "मुरादाबाद"
+      },
+      {
+        "name": "Muzaffarnagar",
+        "localName": "मुजफ्फरनगर"
+      },
+      {
+        "name": "Pilibhit",
+        "localName": "पीलीभीत"
+      },
+      {
+        "name": "Pratapgarh",
+        "localName": "प्रतापगढ़"
+      },
+      {
+        "name": "Prayagraj",
+        "localName": "प्रयागराज"
+      },
+      {
+        "name": "Raebareli",
+        "localName": "रायबरेली"
+      },
+      {
+        "name": "Rampur",
+        "localName": "रामपुर"
+      },
+      {
+        "name": "Saharanpur",
+        "localName": "सहारनपुर"
+      },
+      {
+        "name": "Sambhal",
+        "localName": "संभल"
+      },
+      {
+        "name": "Sant Kabir Nagar",
+        "localName": "संतकबीरनगर"
+      },
+      {
+        "name": "Shahjahanpur",
+        "localName": "शाहजहांपुर"
+      },
+      {
+        "name": "Shamli",
+        "localName": "शामली"
+      },
+      {
+        "name": "Shravasti",
+        "localName": "श्रावस्ती"
+      },
+      {
+        "name": "Siddharthnagar",
+        "localName": "सिद्धार्थनगर"
+      },
+      {
+        "name": "Sitapur",
+        "localName": "सीतापुर"
+      },
+      {
+        "name": "Sonbhadra",
+        "localName": "सोनभद्र"
+      },
+      {
+        "name": "Sultanpur",
+        "localName": "सुल्तानपुर"
+      },
+      {
+        "name": "Unnao",
+        "localName": "उन्नाव"
+      },
+      {
+        "name": "Varanasi",
+        "localName": "वाराणसी"
+      }
+    ]
+  },
+  {
+    "name": "Uttarakhand",
+    "localName": "उत्तराखंड",
+    "languageCode": "hi",
+    "districts": [
+      {
+        "name": "Almora",
+        "localName": "अल्मोडा"
+      },
+      {
+        "name": "Bageshwar",
+        "localName": "बागेश्वर"
+      },
+      {
+        "name": "Chamoli",
+        "localName": "चमोली"
+      },
+      {
+        "name": "Champawat",
+        "localName": "चम्पावत"
+      },
+      {
+        "name": "Dehradun",
+        "localName": "देहरादून"
+      },
+      {
+        "name": "Haridwar",
+        "localName": "हरिद्वार"
+      },
+      {
+        "name": "Nainital",
+        "localName": "नैनीताल"
+      },
+      {
+        "name": "Pauri Garhwal",
+        "localName": "पौडी गढ़वाल"
+      },
+      {
+        "name": "Pithoragarh",
+        "localName": "पिथोरागढ़"
+      },
+      {
+        "name": "Rudraprayag",
+        "localName": "रुद्रप्रयाग"
+      },
+      {
+        "name": "Tehri Garhwal",
+        "localName": "टेहरी गढ़वाल"
+      },
+      {
+        "name": "Udham Singh Nagar",
+        "localName": "उधम सिंह नगर"
+      },
+      {
+        "name": "Uttarkashi",
+        "localName": "उत्तरकाशी"
+      }
+    ]
+  },
+  {
+    "name": "West Bengal",
+    "localName": "পশ্চিমবঙ্গ",
+    "languageCode": "bn",
+    "districts": [
+      {
+        "name": "Alipurduar",
+        "localName": "আলিপুরদুয়ার"
+      },
+      {
+        "name": "Bankura",
+        "localName": "বাঁকুড়া"
+      },
+      {
+        "name": "Birbhum",
+        "localName": "বীরভূম"
+      },
+      {
+        "name": "Cooch Behar",
+        "localName": "কোচবিহার"
+      },
+      {
+        "name": "Dakshin Dinajpur",
+        "localName": "দক্ষিণ দিনাজপুর"
+      },
+      {
+        "name": "Darjeeling",
+        "localName": "দার্জিলিং"
+      },
+      {
+        "name": "Hooghly",
+        "localName": "হুগলি"
+      },
+      {
+        "name": "Howrah",
+        "localName": "হাওড়া"
+      },
+      {
+        "name": "Jalpaiguri",
+        "localName": "জলপাইগুড়ি"
+      },
+      {
+        "name": "Jhargram",
+        "localName": "ঝাড়গ্রাম"
+      },
+      {
+        "name": "Kalimpong",
+        "localName": "কালিম্পং"
+      },
+      {
+        "name": "Kolkata",
+        "localName": "কলকাতা"
+      },
+      {
+        "name": "Malda",
+        "localName": "মালদা"
+      },
+      {
+        "name": "Murshidabad",
+        "localName": "মুর্শিদাবাদ"
+      },
+      {
+        "name": "Nadia",
+        "localName": "নাদিয়া"
+      },
+      {
+        "name": "North 24 Parganas",
+        "localName": "উত্তর 24 পরগনা"
+      },
+      {
+        "name": "Paschim Bardhaman",
+        "localName": "পশ্চিম বর্ধমান"
+      },
+      {
+        "name": "Paschim Medinipur",
+        "localName": "পশ্চিম মেদিনীপুর"
+      },
+      {
+        "name": "Purba Bardhaman",
+        "localName": "পূর্ব বর্ধমান"
+      },
+      {
+        "name": "Purba Medinipur",
+        "localName": "পূর্ব মেদিনীপুর"
+      },
+      {
+        "name": "Purulia",
+        "localName": "পুরুলিয়া"
+      },
+      {
+        "name": "South 24 Parganas",
+        "localName": "দক্ষিণ ২৪ পরগনা"
+      },
+      {
+        "name": "Uttar Dinajpur",
+        "localName": "উত্তর দিনাজপুর"
+      }
+    ]
+  },
+  {
+    "name": "Andaman and Nicobar Islands",
+    "localName": "अंडमान व नोकोबार द्वीप समूह",
+    "languageCode": "hi",
+    "districts": [
+      {
+        "name": "Nicobar",
+        "localName": "निकोबार"
+      },
+      {
+        "name": "North and Middle Andaman",
+        "localName": "उत्तर और मध्य अंडमान"
+      },
+      {
+        "name": "South Andaman",
+        "localName": "दक्षिण अंडमान"
+      }
+    ]
+  },
+  {
+    "name": "Chandigarh",
+    "localName": "चंडीगढ़",
+    "languageCode": "hi",
+    "districts": [
+      {
+        "name": "Chandigarh",
+        "localName": "चंडीगढ़"
+      }
+    ]
+  },
+  {
+    "name": "Dadra and Nagar Haveli and Daman and Diu",
+    "localName": "दादरा और नगर हवेली और दमन और दीव",
+    "languageCode": "hi",
+    "districts": [
+      {
+        "name": "Dadra and Nagar Haveli",
+        "localName": "दादरा और नगर हवेली"
+      },
+      {
+        "name": "Daman",
+        "localName": "दमन"
+      },
+      {
+        "name": "Diu",
+        "localName": "दीव"
+      }
+    ]
+  },
+  {
+    "name": "Delhi",
+    "localName": "दिल्ली",
+    "languageCode": "hi",
+    "districts": [
+      {
+        "name": "Central Delhi",
+        "localName": "मध्य दिल्ली"
+      },
+      {
+        "name": "East Delhi",
+        "localName": "पूर्वी दिल्ली"
+      },
+      {
+        "name": "New Delhi",
+        "localName": "नई दिल्ली"
+      },
+      {
+        "name": "North Delhi",
+        "localName": "उत्तरी दिल्ली"
+      },
+      {
+        "name": "North East Delhi",
+        "localName": "उत्तर पूर्वी दिल्ली"
+      },
+      {
+        "name": "North West Delhi",
+        "localName": "उत्तर पश्चिम दिल्ली"
+      },
+      {
+        "name": "Shahdara",
+        "localName": "शाहदरा"
+      },
+      {
+        "name": "South Delhi",
+        "localName": "दक्षिणी दिल्ली"
+      },
+      {
+        "name": "South East Delhi",
+        "localName": "दक्षिण पूर्वी दिल्ली"
+      },
+      {
+        "name": "South West Delhi",
+        "localName": "दक्षिण पश्चिम दिल्ली"
+      },
+      {
+        "name": "West Delhi",
+        "localName": "पश्चिमी दिल्ली"
+      }
+    ]
+  },
+  {
+    "name": "Jammu and Kashmir",
+    "localName": "जम्मू और कश्मीर",
+    "languageCode": "hi",
+    "districts": [
+      {
+        "name": "Anantnag",
+        "localName": "अनंतनाग"
+      },
+      {
+        "name": "Bandipora",
+        "localName": "बांदीपुरा"
+      },
+      {
+        "name": "Baramulla",
+        "localName": "बारामूला"
+      },
+      {
+        "name": "Budgam",
+        "localName": "बडगाम"
+      },
+      {
+        "name": "Doda",
+        "localName": "डोडा"
+      },
+      {
+        "name": "Ganderbal",
+        "localName": "गांदरबल"
+      },
+      {
+        "name": "Jammu",
+        "localName": "जम्मू"
+      },
+      {
+        "name": "Kathua",
+        "localName": "कठुआ"
+      },
+      {
+        "name": "Kishtwar",
+        "localName": "किश्तवाड़"
+      },
+      {
+        "name": "Kulgam",
+        "localName": "कुलगाम"
+      },
+      {
+        "name": "Kupwara",
+        "localName": "कुपवाड़ा"
+      },
+      {
+        "name": "Poonch",
+        "localName": "पूंछ"
+      },
+      {
+        "name": "Pulwama",
+        "localName": "पुलवामा"
+      },
+      {
+        "name": "Rajouri",
+        "localName": "राजौरी"
+      },
+      {
+        "name": "Ramban",
+        "localName": "रामबन"
+      },
+      {
+        "name": "Reasi",
+        "localName": "रियासी"
+      },
+      {
+        "name": "Samba",
+        "localName": "सांबा"
+      },
+      {
+        "name": "Shopian",
+        "localName": "शोपियां"
+      },
+      {
+        "name": "Srinagar",
+        "localName": "श्रीनगर"
+      },
+      {
+        "name": "Udhampur",
+        "localName": "उधमपुर"
+      }
+    ]
+  },
+  {
+    "name": "Ladakh",
+    "localName": "लद्दाख",
+    "languageCode": "hi",
+    "districts": [
+      {
+        "name": "Kargil",
+        "localName": "कारगिल"
+      },
+      {
+        "name": "Leh",
+        "localName": "लेह"
+      }
+    ]
+  },
+  {
+    "name": "Lakshadweep",
+    "localName": "लक्षद्वीप",
+    "languageCode": "hi",
+    "districts": [
+      {
+        "name": "Lakshadweep",
+        "localName": "लक्षद्वीप"
+      }
+    ]
+  },
+  {
+    "name": "Puducherry",
+    "localName": "पुदुचेरी",
+    "languageCode": "hi",
+    "districts": [
+      {
+        "name": "Karaikal",
+        "localName": "कराईकल"
+      },
+      {
+        "name": "Mahe",
+        "localName": "माहे"
+      },
+      {
+        "name": "Puducherry",
+        "localName": "पुदुचेरी"
+      },
+      {
+        "name": "Yanam",
+        "localName": "यानम"
+      }
+    ]
+  }
+]

@@ -1,5 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { ReactTransliterate } from 'react-transliterate';
+import 'react-transliterate/dist/index.css';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Flame, Clock, Compass, Users, CheckCircle2, RotateCcw, User, Home, Phone, 
@@ -17,6 +19,7 @@ import { VoiceWaveVisualizer } from '../components/VoiceWaveVisualizer';
 import { DivineThreeScene } from '../components/DivineThreeScene';
 import templeDarshanImg from '../assets/images/temple_darshan_1782924670035.jpg';
 import lionLogoImg from '../assets/images/golden_lion_logo_1782992631796.jpg';
+import { DailyEvent, UpcomingFestival } from '../types';
 
 interface Devotee {
   id: string;
@@ -159,6 +162,15 @@ export default function DevoteeRegistration() {
 
   // Real-time Database state
   const [devotees, setDevotees] = useState<Devotee[]>([]);
+  const [statesData, setStatesData] = useState<any[]>([]);
+
+  useEffect(() => {
+    import('../data/indianStatesDistricts.json')
+      .then((module) => {
+        setStatesData(module.default);
+      })
+      .catch(err => console.error("Failed to load states data", err));
+  }, []);
   const [stats, setStats] = useState({ completed: 0, pending: 0, total: 0 });
   const [currentRunningToken, setCurrentRunningToken] = useState<number | null>(null);
 
@@ -178,6 +190,10 @@ export default function DevoteeRegistration() {
     aadhaar: '',
     arrivalDate: new Date().toISOString().split('T')[0]
   });
+
+  const selectedStateData = statesData.find(s => s.localName === formData.state || s.name === formData.state);
+  const inputLang = selectedStateData?.languageCode || 'gu';
+  const districtOptions = selectedStateData ? selectedStateData.districts : [];
 
   const [rawTranscripts, setRawTranscripts] = useState({
     name: '',
@@ -249,6 +265,9 @@ export default function DevoteeRegistration() {
     minutes: 0,
     seconds: 0
   });
+
+  const [dailyEvents, setDailyEvents] = useState<DailyEvent[]>([]);
+  const [festival, setFestival] = useState<UpcomingFestival | null>(null);
 
   // Live TV settings & viewer count
   const [liveSettings, setLiveSettings] = useState<{
@@ -355,9 +374,23 @@ export default function DevoteeRegistration() {
         console.error(e);
       }
     };
+
+    const fetchEvents = async () => {
+      try {
+        const res = await fetch('/api/events');
+        if (res.ok) {
+          const data = await res.json();
+          setDailyEvents(data.dailyEvents || []);
+          setFestival(data.festival || null);
+        }
+      } catch (e) {
+        console.error("Error fetching events:", e);
+      }
+    };
     
     fetchDevoteesAndStats();
     fetchSchedule();
+    fetchEvents();
 
     const fetchLiveSettings = async () => {
       try {
@@ -375,6 +408,7 @@ export default function DevoteeRegistration() {
     socketRef.current.on('queue_update', fetchDevoteesAndStats);
     socketRef.current.on('registration_schedule_update', fetchSchedule);
     socketRef.current.on('live_tv_update', fetchLiveSettings);
+    socketRef.current.on('events_update', fetchEvents);
     socketRef.current.on('viewer_count_update', (count: number) => {
       setLiveViewerCount(count);
     });
@@ -1004,7 +1038,7 @@ export default function DevoteeRegistration() {
                   
                   <div className="space-y-1">
                     <h2 className="font-serif text-3xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-b from-[#ffffff] via-gold-400 to-gold-500 drop-shadow-[0_4px_12px_rgba(0,0,0,0.9)] tracking-wide">
-                      Tiger Chehar Raj Uvasad
+                      ટાઇગર ચેહર રાજ આશ્રમ ઉવાસદ
                     </h2>
                     <p className="text-saffron text-xs md:text-sm font-extrabold uppercase tracking-[0.3em] drop-shadow-md">
                       ડીજીટલ રજીસ્ટ્રેશન ડેશબોર્ડ
@@ -1215,12 +1249,12 @@ export default function DevoteeRegistration() {
                     <div className="flex flex-col gap-1.5">
                       <label className="text-xs font-bold text-gold-500/80">ભક્તનું નામ (Full Name) *</label>
                       <div className="relative">
-                        <User className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gold-500/40" />
-                        <input
-                          type="text"
-                          required
+                        <User className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gold-500/40 z-10" />
+                        <ReactTransliterate
                           value={formData.name}
-                          onChange={e => setFormData({ ...formData, name: e.target.value })}
+                          onChangeText={(text) => setFormData({ ...formData, name: text })}
+                          lang={inputLang as any}
+                          containerClassName="w-full"
                           className="w-full bg-black/40 border border-gold-500/20 rounded-xl py-3 pl-11 pr-4 text-sm text-white focus:outline-none focus:border-gold-500 focus:shadow-[0_0_15px_rgba(212,175,55,0.15)] transition-all placeholder-white/20"
                           placeholder="દા.ત. નરેશભાઈ પટેલ"
                         />
@@ -1248,12 +1282,12 @@ export default function DevoteeRegistration() {
                     <div className="flex flex-col gap-1.5">
                       <label className="text-xs font-bold text-gold-500/80">ગામનું નામ (Village) *</label>
                       <div className="relative">
-                        <Home className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gold-500/40" />
-                        <input
-                          type="text"
-                          required
+                        <Home className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gold-500/40 z-10" />
+                        <ReactTransliterate
                           value={formData.village}
-                          onChange={e => setFormData({ ...formData, village: e.target.value })}
+                          onChangeText={(text) => setFormData({ ...formData, village: text })}
+                          lang={inputLang as any}
+                          containerClassName="w-full"
                           className="w-full bg-black/40 border border-gold-500/20 rounded-xl py-3 pl-11 pr-4 text-sm text-white focus:outline-none focus:border-gold-500 focus:shadow-[0_0_15px_rgba(212,175,55,0.15)] transition-all placeholder-white/20"
                           placeholder="ગામ દા.ત. ઉવાસદ"
                         />
@@ -1264,25 +1298,33 @@ export default function DevoteeRegistration() {
                     <div className="flex flex-col gap-1.5">
                       <label className="text-xs font-bold text-gold-500/80">જિલ્લો (District)</label>
                       <div className="relative">
-                        <MapPin className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gold-500/40" />
-                        <input
-                          type="text"
+                        <MapPin className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gold-500/40 z-10" />
+                        <select
                           value={formData.district}
                           onChange={e => setFormData({ ...formData, district: e.target.value })}
-                          className="w-full bg-black/40 border border-gold-500/20 rounded-xl py-3 pl-11 pr-4 text-sm text-white focus:outline-none focus:border-gold-500 focus:shadow-[0_0_15px_rgba(212,175,55,0.15)] transition-all placeholder-white/20"
-                        />
+                          className="w-full bg-black/40 border border-gold-500/20 rounded-xl py-3 pl-11 pr-4 text-sm text-white focus:outline-none focus:border-gold-500 focus:shadow-[0_0_15px_rgba(212,175,55,0.15)] transition-all appearance-none"
+                        >
+                          <option value="">જિલ્લો પસંદ કરો (Select District)</option>
+                          {districtOptions.map((d: any, idx: number) => (
+                            <option key={idx} value={d.localName}>{d.localName} ({d.name})</option>
+                          ))}
+                        </select>
                       </div>
                     </div>
 
                     {/* State */}
                     <div className="flex flex-col gap-1.5">
                       <label className="text-xs font-bold text-gold-500/80">રાજ્ય (State)</label>
-                      <input
-                        type="text"
+                      <select
                         value={formData.state}
-                        onChange={e => setFormData({ ...formData, state: e.target.value })}
+                        onChange={e => setFormData({ ...formData, state: e.target.value, district: '' })}
                         className="w-full bg-black/40 border border-gold-500/20 rounded-xl py-3 px-4 text-sm text-white focus:outline-none focus:border-gold-500 transition-colors"
-                      />
+                      >
+                        <option value="">રાજ્ય પસંદ કરો (Select State)</option>
+                        {statesData.map((s: any, idx: number) => (
+                          <option key={idx} value={s.localName}>{s.localName} ({s.name})</option>
+                        ))}
+                      </select>
                     </div>
 
 
@@ -1317,9 +1359,12 @@ export default function DevoteeRegistration() {
                   {/* Special Notes */}
                   <div className="flex flex-col gap-1.5">
                     <label className="text-xs font-bold text-gold-500/80">ખાસ નોંધ / માનતા (Special Notes)</label>
-                    <textarea
+                    <ReactTransliterate
+                      renderComponent={(props) => <textarea {...props} />}
                       value={formData.specialNotes}
-                      onChange={e => setFormData({ ...formData, specialNotes: e.target.value })}
+                      onChangeText={(text) => setFormData({ ...formData, specialNotes: text })}
+                      lang={inputLang as any}
+                      containerClassName="w-full"
                       className="w-full bg-black/40 border border-gold-500/20 rounded-xl py-3 px-4 text-sm text-white focus:outline-none focus:border-gold-500 transition-colors h-20"
                       placeholder="માનતા અથવા કોઈ વિશેષ સેવા બાબત નોંધ..."
                     />
@@ -1705,39 +1750,42 @@ export default function DevoteeRegistration() {
               exit={{ opacity: 0, y: -15 }}
               className="space-y-6"
             >
-              <div className="bg-gradient-to-r from-saffron/20 via-gold-500/20 to-[#8B0000]/20 border border-gold-500/30 rounded-2xl p-5 flex flex-col md:flex-row items-center justify-between gap-4">
-                <div className="flex items-center gap-3 text-center md:text-left">
-                  <Flame className="w-10 h-10 text-saffron animate-bounce" />
-                  <div>
-                    <h4 className="text-sm font-bold text-white">મંદિર આગામી મહોત્સવ ઉત્સવ અને ભંડારો</h4>
-                    <p className="text-[11px] text-[#f0e6d0]/75 mt-0.5">શ્રાવણ સુદ પૂનમના રોજ સવારે દિવ્ય આરતી તથા ભંડારાનું આયોજન.</p>
+              {festival && (
+                <div className="bg-gradient-to-r from-saffron/20 via-gold-500/20 to-[#8B0000]/20 border border-gold-500/30 rounded-2xl p-5 flex flex-col md:flex-row items-center justify-between gap-4">
+                  <div className="flex items-center gap-3 text-center md:text-left">
+                    <Flame className="w-10 h-10 text-saffron animate-bounce" />
+                    <div>
+                      <h4 className="text-sm font-bold text-white">{festival.title}</h4>
+                      <p className="text-[11px] text-[#f0e6d0]/75 mt-0.5">{festival.description}</p>
+                    </div>
                   </div>
+                  {festival.targetDate && (
+                    <div className="bg-black/60 border border-gold-500/30 rounded-xl px-4 py-2 text-center">
+                      <span className="block text-[8px] text-white/50 uppercase tracking-wider">દિવસો બાકી</span>
+                      <span className="text-lg font-serif font-bold text-gold-500">
+                        {Math.max(0, Math.ceil((new Date(festival.targetDate).getTime() - new Date().getTime()) / (1000 * 60 * 60 * 24)))} દિવસ
+                      </span>
+                    </div>
+                  )}
                 </div>
-                <div className="bg-black/60 border border-gold-500/30 rounded-xl px-4 py-2 text-center">
-                  <span className="block text-[8px] text-white/50 uppercase tracking-wider">દિવસો બાકી</span>
-                  <span className="text-lg font-serif font-bold text-gold-500">૨૮ દિવસ</span>
-                </div>
-              </div>
+              )}
 
               <div className="bg-[#121015]/65 border border-gold-500/20 rounded-3xl p-6 backdrop-blur-md shadow-lg w-full">
                 <h4 className="font-serif text-lg font-bold text-white border-b border-gold-500/10 pb-3 mb-4">મંદિર દૈનિક કાર્યક્રમ સમય પત્રક</h4>
                 <div className="space-y-4">
-                  {[
-                    { title: "સવારની મંગળા આરતી", time: "૦૬:૦૦ AM", desc: "દરરોજ સવારે દિવ્ય મહા આરતી" },
-                    { title: "ભક્ત ભોજન પ્રસાદશાળા", time: "૧૧:૩批 AM - ૦૨:૦૦ PM", desc: "શ્રી ચેહર પ્રસાદ વિતરણ ભોજનાલય" },
-                    { title: "સાંજની સંધ્યા આરતી", time: "૦૭:૦૦ PM", desc: "સાંજના સમયની ધૂપ આરતી" },
-                    { title: "રાત્રી ભજન સત્સંગ મંડળ", time: "૦૯:૦૦ PM", desc: "શનિવાર અને રવિવારે ખાસ આયોજન" }
-                  ].map((item, idx) => (
-                    <div key={idx} className="flex justify-between items-start gap-4 p-3 bg-black/30 rounded-xl border border-gold-500/10">
+                  {dailyEvents.length > 0 ? dailyEvents.map((item, idx) => (
+                    <div key={item.id || idx} className="flex justify-between items-start gap-4 p-3 bg-black/30 rounded-xl border border-gold-500/10">
                       <div>
                         <h5 className="text-xs font-bold text-white">{item.title}</h5>
-                        <p className="text-[10px] text-white/40 mt-0.5">{item.desc}</p>
+                        <p className="text-[10px] text-white/40 mt-0.5">{item.description}</p>
                       </div>
                       <span className="px-3 py-1 bg-gold-500/10 text-gold-400 border border-gold-500/20 rounded-lg text-xs font-mono font-bold whitespace-nowrap">
                         {item.time}
                       </span>
                     </div>
-                  ))}
+                  )) : (
+                    <p className="text-white/40 text-xs text-center py-4">કોઈ ઇવેન્ટ ઉપલબ્ધ નથી</p>
+                  )}
                 </div>
               </div>
             </motion.div>
@@ -1855,7 +1903,7 @@ export default function DevoteeRegistration() {
                   alt="Temple logo" 
                   className="w-12 h-12 mx-auto rounded-full object-cover border border-gold-500/40" 
                 />
-                <h4 className="font-serif text-sm font-bold text-gold-500 tracking-wider">TIGER CHEHAR RAJ UVASAD</h4>
+                <h4 className="font-serif text-sm font-bold text-gold-500 tracking-wider">ટાઇગર ચેહર રાજ આશ્રમ ઉવાસદ</h4>
                 <p className="text-[8px] text-white/40 uppercase tracking-widest font-bold">Divine Darshan Entry Pass</p>
               </div>
 
@@ -1877,7 +1925,7 @@ export default function DevoteeRegistration() {
                       village: selectedPass.village,
                       mobile: selectedPass.mobile,
                       entryTime: new Date(selectedPass.registrationTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-                      temple: "Tiger Chehar Raj Uvasad"
+                      temple: "ટાઇગર ચેહર રાજ આશ્રમ ઉવાસદ"
                     })}
                     size={96}
                     bgColor="#ffffff"

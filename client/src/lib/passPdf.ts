@@ -149,7 +149,7 @@ function buildPassElement(
   );
 
   const title = document.createElement('div');
-  title.textContent = 'TIGER CHEHAR RAJ UVASAD';
+  title.textContent = 'ટાઇગર ચેહર રાજ આશ્રમ ઉવાસદ';
   setStyles(title, {
     color: '#D4AF37',
     fontWeight: '700',

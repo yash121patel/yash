@@ -8,6 +8,7 @@ import crypto from "crypto";
 import { GoogleGenAI } from "@google/genai";
 import cors from "cors";
 import dotenv from "dotenv";
+import fs from "fs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 dotenv.config({ path: path.resolve(__dirname, ".env") });
@@ -26,7 +27,7 @@ const PORT = 3000;
 app.use(express.json());
 
 // Initialize SQLite Database
-const db = new Database("db.sqlite");
+let db = new Database("db.sqlite");
 db.exec(`
   CREATE TABLE IF NOT EXISTS devotees (
     id TEXT PRIMARY KEY,
@@ -65,6 +66,20 @@ db.exec(`
     autoCloseAfterLimitReached INTEGER DEFAULT 1,
     enabled INTEGER DEFAULT 1
   );
+
+  CREATE TABLE IF NOT EXISTS daily_events (
+    id TEXT PRIMARY KEY,
+    title TEXT NOT NULL,
+    time TEXT NOT NULL,
+    description TEXT
+  );
+
+  CREATE TABLE IF NOT EXISTS upcoming_festival (
+    id TEXT PRIMARY KEY,
+    title TEXT NOT NULL,
+    description TEXT,
+    targetDate TEXT
+  );
 `);
 
 // Force reset the table if old schema exists
@@ -86,6 +101,20 @@ db.prepare(`
     '1', 'Scheduled', 'Sunday', '', '08:00 AM', '', '08:00 PM', 'Asia/Kolkata', 500, 500, 0, 1, 1
   )
 `).run();
+
+db.prepare(`
+  INSERT OR IGNORE INTO upcoming_festival (id, title, description, targetDate)
+  VALUES ('1', 'મંદિર આગામી મહોત્સવ ઉત્સવ અને ભંડારો', 'શ્રાવણ સુદ પૂનમના રોજ સવારે દિવ્ય આરતી તથા ભંડારાનું આયોજન.', '2026-08-28')
+`).run();
+
+const existingEvents = db.prepare("SELECT count(*) as count FROM daily_events").get() as { count: number };
+if (existingEvents.count === 0) {
+  const insertEvent = db.prepare("INSERT INTO daily_events (id, title, time, description) VALUES (?, ?, ?, ?)");
+  insertEvent.run(crypto.randomUUID(), "સવારની મંગળા આરતી", "૦૬:૦૦ AM", "દરરોજ સવારે દિવ્ય મહા આરતી");
+  insertEvent.run(crypto.randomUUID(), "ભક્ત ભોજન પ્રસાદશાળા", "૧૧:૩૦ AM - ૦૨:૦૦ PM", "શ્રી ચેહર પ્રસાદ વિતરણ ભોજનાલય");
+  insertEvent.run(crypto.randomUUID(), "સાંજની સંધ્યા આરતી", "૦૭:૦૦ PM", "સાંજના સમયની ધૂપ આરતી");
+  insertEvent.run(crypto.randomUUID(), "રાત્રી ભજન સત્સંગ મંડળ", "૦૯:૦૦ PM", "શનિવાર અને રવિવારે ખાસ આયોજન");
+}
 
 // Simple Admin user store for auth (in a real app, hash passwords and store in DB)
 const JWT_SECRET = "chehar_maa_secret_key_2024";
@@ -142,6 +171,9 @@ app.post("/api/devotees", (req, res) => {
       }
     }
 
+    // Trigger automatic backup after successful registration
+    performAutoBackup();
+
     res.json({ success: true, tokenNumber, id });
   } catch (error) {
     console.error("Error inserting devotee:", error);
@@ -196,6 +228,64 @@ app.post("/api/parse-speech", async (req, res) => {
     }
   } catch (error) {
     console.error("Error parsing speech:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+// GET Events
+app.get("/api/events", (req, res) => {
+  try {
+    const dailyEvents = db.prepare("SELECT * FROM daily_events").all();
+    const festival = db.prepare("SELECT * FROM upcoming_festival WHERE id = '1'").get();
+    res.json({ dailyEvents, festival });
+  } catch (error) {
+    console.error("Error fetching events:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+// POST Daily Event (Add or Update)
+app.post("/api/events/daily", (req, res) => {
+  try {
+    const { id, title, time, description } = req.body;
+    const eventId = id || crypto.randomUUID();
+    db.prepare(`
+      INSERT OR REPLACE INTO daily_events (id, title, time, description)
+      VALUES (?, ?, ?, ?)
+    `).run(eventId, title, time, description);
+    io.emit("events_update");
+    res.json({ success: true, id: eventId });
+  } catch (error) {
+    console.error("Error saving daily event:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+// DELETE Daily Event
+app.delete("/api/events/daily/:id", (req, res) => {
+  try {
+    const { id } = req.params;
+    db.prepare("DELETE FROM daily_events WHERE id = ?").run(id);
+    io.emit("events_update");
+    res.json({ success: true });
+  } catch (error) {
+    console.error("Error deleting daily event:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+// POST Upcoming Festival
+app.post("/api/events/festival", (req, res) => {
+  try {
+    const { title, description, targetDate } = req.body;
+    db.prepare(`
+      INSERT OR REPLACE INTO upcoming_festival (id, title, description, targetDate)
+      VALUES ('1', ?, ?, ?)
+    `).run(title, description, targetDate);
+    io.emit("events_update");
+    res.json({ success: true });
+  } catch (error) {
+    console.error("Error saving festival:", error);
     res.status(500).json({ error: "Internal server error" });
   }
 });
@@ -703,6 +793,137 @@ app.delete("/api/live-tv", (req, res) => {
   } catch (error) {
     console.error("Error deleting live tv settings:", error);
     res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+
+// ─── BACKUP & RESTORE API ───
+
+const BACKUPS_DIR = path.join(process.cwd(), "backups");
+if (!fs.existsSync(BACKUPS_DIR)) {
+  fs.mkdirSync(BACKUPS_DIR, { recursive: true });
+}
+
+function performAutoBackup() {
+  try {
+    const timestamp = new Date().toISOString().replace(/[:.]/g, "-");
+    const backupFileName = `auto-backup-${timestamp}.sqlite`;
+    const backupPath = path.join(BACKUPS_DIR, backupFileName);
+    db.backup(backupPath)
+      .then(() => console.log(`Auto backup created: ${backupFileName}`))
+      .catch((err) => console.error("Auto backup failed:", err));
+  } catch (error) {
+    console.error("Error creating auto backup:", error);
+  }
+}
+
+// Create a new backup
+app.post("/api/backup", (req, res) => {
+  try {
+    const timestamp = new Date().toISOString().replace(/[:.]/g, "-");
+    const backupFileName = `backup-${timestamp}.sqlite`;
+    const backupPath = path.join(BACKUPS_DIR, backupFileName);
+    
+    // Perform backup using better-sqlite3 built-in backup
+    db.backup(backupPath)
+      .then(() => {
+        res.json({ success: true, message: "Backup created successfully", filename: backupFileName });
+      })
+      .catch((err) => {
+        console.error("Backup failed:", err);
+        res.status(500).json({ error: "Backup failed" });
+      });
+  } catch (error) {
+    console.error("Error creating backup:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+// List all backups
+app.get("/api/backups", (req, res) => {
+  try {
+    const files = fs.readdirSync(BACKUPS_DIR)
+      .filter(f => f.endsWith('.sqlite'))
+      .map(filename => {
+        const stats = fs.statSync(path.join(BACKUPS_DIR, filename));
+        return {
+          filename,
+          size: stats.size,
+          createdAt: stats.birthtime.toISOString()
+        };
+      })
+      .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+      
+    res.json(files);
+  } catch (error) {
+    console.error("Error listing backups:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+// View data in a specific backup
+app.get("/api/backup/:filename/devotees", (req, res) => {
+  try {
+    const { filename } = req.params;
+    if (!filename) return res.status(400).json({ error: "Filename is required" });
+    
+    const backupPath = path.join(BACKUPS_DIR, filename);
+    if (!fs.existsSync(backupPath)) {
+      return res.status(404).json({ error: "Backup file not found" });
+    }
+
+    const backupDb = new Database(backupPath, { readonly: true });
+    try {
+      const devotees = backupDb.prepare("SELECT * FROM devotees ORDER BY registrationTime DESC").all();
+      res.json(devotees);
+    } finally {
+      backupDb.close();
+    }
+  } catch (error) {
+    console.error("Error fetching backup devotees:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+// Restore a backup
+app.post("/api/restore", (req, res) => {
+  try {
+    const { filename } = req.body;
+    if (!filename) {
+      return res.status(400).json({ error: "Filename is required" });
+    }
+    
+    const backupPath = path.join(BACKUPS_DIR, filename);
+    if (!fs.existsSync(backupPath)) {
+      return res.status(404).json({ error: "Backup file not found" });
+    }
+    
+    // Close current connection
+    db.close();
+    
+    // Overwrite db.sqlite with the backup file
+    fs.copyFileSync(backupPath, "db.sqlite");
+    
+    // Re-open connection
+    db = new Database("db.sqlite");
+    
+    // Notify clients that everything needs to be reloaded
+    io.emit("update_data");
+    io.emit("events_update");
+    io.emit("live_tv_update");
+    io.emit("registration_schedule_update");
+    
+    res.json({ success: true, message: "Database restored successfully" });
+  } catch (error) {
+    console.error("Error restoring backup:", error);
+    res.status(500).json({ error: "Internal server error" });
+    
+    // Try to re-open DB if it crashed
+    try {
+      if (!db.open) {
+        db = new Database("db.sqlite");
+      }
+    } catch (e) {}
   }
 });
 

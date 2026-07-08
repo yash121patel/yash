@@ -342,7 +342,7 @@ export default function TempleScreen() {
             <Flame className="w-5 h-5 text-gold-400 animate-pulse" />
           </div>
           <div className="flex flex-col">
-            <span className="text-xs font-extrabold uppercase tracking-[0.2em] text-gold-500/70 font-serif">TIGER CHEHAR RAJ UVASAD</span>
+            <span className="text-xs font-extrabold uppercase tracking-[0.2em] text-gold-500/70 font-serif">ટાઇગર ચેહર રાજ આશ્રમ ઉવાસદ</span>
             <span className="text-xs font-semibold text-white/50">લાઈવ મંદિર ટીવી પોર્ટલ</span>
           </div>
         </div>

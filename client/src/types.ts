@@ -15,3 +15,17 @@ export interface QueueStats {
   pending: number;
   total: number;
 }
+
+export interface DailyEvent {
+  id?: string;
+  title: string;
+  time: string;
+  description: string;
+}
+
+export interface UpcomingFestival {
+  id?: string;
+  title: string;
+  description: string;
+  targetDate: string;
+}

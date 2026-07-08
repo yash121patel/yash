@@ -4,16 +4,15 @@ import {
   Users, Clock, CheckCircle2, FileSpreadsheet, Download, LogOut, Search, 
   QrCode, Edit, Trash2, Check, X, ShieldAlert, TrendingUp, Calendar, MapPin, 
   Home, RefreshCw, Printer, AlertTriangle, AlertCircle, Plus, Eye, KeyRound,
-  BarChart3, PieChart, Tv, Settings
+  BarChart3, PieChart, Tv, Settings, Database
 } from 'lucide-react';
 import { io, Socket } from 'socket.io-client';
-import { Devotee } from '../types';
+import { Devotee, DailyEvent, UpcomingFestival } from '../types';
 import { cn } from '../lib/utils';
-import * as XLSX from 'xlsx';
-import jsPDF from 'jspdf';
-import autoTable from 'jspdf-autotable';
+import { QRCodeCanvas } from 'qrcode.react';
 
-type AdminTab = 'overview' | 'management' | 'analytics' | 'settings' | 'schedule';
+
+type AdminTab = 'overview' | 'management' | 'analytics' | 'settings' | 'schedule' | 'events_admin' | 'database_admin' | 'restore';
 
 export default function AdminDashboard() {
   const [devotees, setDevotees] = useState<Devotee[]>([]);
@@ -55,6 +54,19 @@ export default function AdminDashboard() {
     liveEnabled: false
   });
 
+  const [dailyEvents, setDailyEvents] = useState<DailyEvent[]>([]);
+  const [festival, setFestival] = useState<UpcomingFestival | null>(null);
+  const [backups, setBackups] = useState<any[]>([]);
+  const [viewingBackup, setViewingBackup] = useState<string | null>(null);
+  const [backupDevotees, setBackupDevotees] = useState<Devotee[]>([]);
+  const [backupSearchQuery, setBackupSearchQuery] = useState("");
+  
+  // Dedicated Restore states
+  const [selectedRestoreBackup, setSelectedRestoreBackup] = useState<string>('');
+  const [restoreFilterYear, setRestoreFilterYear] = useState<string>('all');
+  const [restoreFilterMonth, setRestoreFilterMonth] = useState<string>('all');
+  const [restoreFilterDate, setRestoreFilterDate] = useState<string>('all');
+  const [restoreDevotees, setRestoreDevotees] = useState<Devotee[]>([]);
   // Toast state
   const [toast, setToast] = useState<{ message: string, type: 'success' | 'error' } | null>(null);
 
@@ -108,6 +120,19 @@ export default function AdminDashboard() {
       }
     };
 
+    const fetchEvents = async () => {
+      try {
+        const res = await fetch('/api/events');
+        if (res.ok) {
+          const data = await res.json();
+          setDailyEvents(data.dailyEvents || []);
+          setFestival(data.festival || null);
+        }
+      } catch (e) {
+        console.error("Error fetching events:", e);
+      }
+    };
+
     const fetchLiveSettings = async () => {
       try {
         console.log("Fetching Live Settings...");
@@ -154,13 +179,32 @@ export default function AdminDashboard() {
       }
     };
     
+    const fetchBackups = async () => {
+      try {
+        const res = await fetch('/api/backups');
+        if (res.ok) setBackups(await res.json());
+      } catch (e) {
+        console.error("Error fetching backups:", e);
+      }
+    };
+    
     fetchDevotees();
     fetchLiveSettings();
     fetchScheduleSettings();
+    fetchEvents();
+    fetchBackups();
 
     socketRef.current.on('queue_update', fetchDevotees);
     socketRef.current.on('live_tv_update', fetchLiveSettings);
     socketRef.current.on('registration_schedule_update', fetchScheduleSettings);
+    socketRef.current.on('events_update', fetchEvents);
+    socketRef.current.on('update_data', () => {
+      fetchDevotees();
+      fetchLiveSettings();
+      fetchScheduleSettings();
+      fetchEvents();
+      fetchBackups();
+    });
 
     return () => {
       if (socketRef.current) socketRef.current.disconnect();
@@ -211,15 +255,127 @@ export default function AdminDashboard() {
   const rejected = devotees.filter(d => d.status === 'rejected').length;
 
   // Backup & Restore
-  const handleBackup = () => {
-    alert("ડેટાબેઝ સફળતાપૂર્વક બેકઅપ લેવાયો છે (db.sqlite backup completed).");
+  const handleBackup = async () => {
+    try {
+      const res = await fetch('/api/backup', { method: 'POST' });
+      if (res.ok) {
+        showToast("ડેટાબેઝ સફળતાપૂર્વક બેકઅપ લેવાયો છે.");
+        window.alert("✅ ડેટાબેઝ બેકઅપ સફળતાપૂર્વક લેવાયો છે! (Database Backup Successful)");
+        // Refresh backups list
+        const res2 = await fetch('/api/backups');
+        if (res2.ok) setBackups(await res2.json());
+      } else {
+        showToast("બેકઅપ લેવામાં ભૂલ આવી.", 'error');
+      }
+    } catch (e) {
+      console.error(e);
+      showToast("બેકઅપ લેવામાં ભૂલ આવી.", 'error');
+    }
   };
 
-  const handleRestore = () => {
-    alert("ડેટાબેઝ રીસ્ટોર પ્રક્રિયા પૂર્ણ થઈ છે.");
+  const handleRestore = async (filename: string) => {
+    if (!window.confirm(`શું તમે ખરેખર ${filename} બેકઅપ રીસ્ટોર કરવા માંગો છો? આ ક્રિયા વર્તમાન ડેટાને ઓવરરાઇટ કરશે.`)) return;
+    try {
+      const res = await fetch('/api/restore', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ filename })
+      });
+      if (res.ok) {
+        showToast("ડેટાબેઝ સફળતાપૂર્વક રીસ્ટોર થયો છે.");
+        window.alert("✅ ડેટાબેઝ સફળતાપૂર્વક રીસ્ટોર થયો છે! (Database Restore Successful)");
+        // The server will broadcast update_data to refresh everything
+      } else {
+        showToast("રીસ્ટોરમાં ભૂલ આવી.", 'error');
+      }
+    } catch (e) {
+      console.error(e);
+      showToast("રીસ્ટોરમાં ભૂલ આવી.", 'error');
+    }
+  };
+
+  const handleViewBackup = async (filename: string) => {
+    try {
+      const res = await fetch(`/api/backup/${filename}/devotees`);
+      if (res.ok) {
+        const data = await res.json();
+        setBackupDevotees(data);
+        setViewingBackup(filename);
+      } else {
+        showToast("ડેટા લાવવામાં ભૂલ આવી", "error");
+      }
+    } catch (e) {
+      console.error(e);
+      showToast("ડેટા લાવવામાં ભૂલ આવી", "error");
+    }
+  };
+
+  const exportBackupToExcel = async () => {
+    if (!backupDevotees.length) return;
+    const XLSX = await import('xlsx');
+    const headers = ["Token Number", "Name", "Village", "Mobile", "Language", "Status", "Registration Date", "Registration Time"];
+    const rows = backupDevotees.map(d => {
+      const dateObj = new Date(d.registrationTime);
+      return [
+        d.tokenNumber,
+        d.name,
+        d.village,
+        d.mobile,
+        d.language,
+        d.status,
+        dateObj.toLocaleDateString('en-IN'),
+        dateObj.toLocaleTimeString('en-IN')
+      ];
+    });
+    const worksheet = XLSX.utils.aoa_to_sheet([headers, ...rows]);
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Backup Data");
+    XLSX.writeFile(workbook, `tiger_chehar_backup_${viewingBackup}_${Date.now()}.xlsx`);
   };
 
   // Devotee Actions: Edit Details Submit
+  const handleSaveFestival = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!festival) return;
+    try {
+      const res = await fetch('/api/events/festival', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(festival)
+      });
+      if (res.ok) showToast('મહોત્સવની માહિતી સફળતાપૂર્વક સાચવવામાં આવી');
+    } catch (e) {
+      console.error(e);
+      showToast('Error saving festival', 'error');
+    }
+  };
+
+  const handleSaveDailyEvent = async (event: DailyEvent) => {
+    try {
+      const res = await fetch('/api/events/daily', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(event)
+      });
+      if (res.ok) {
+        showToast('ઇવેન્ટ સફળતાપૂર્વક સાચવવામાં આવી');
+      }
+    } catch (e) {
+      console.error(e);
+      showToast('Error saving event', 'error');
+    }
+  };
+
+  const handleDeleteDailyEvent = async (id: string) => {
+    try {
+      const res = await fetch(`/api/events/daily/${id}`, { method: 'DELETE' });
+      if (res.ok) showToast('ઇવેન્ટ ડિલીટ કરવામાં આવી');
+    } catch (e) {
+      console.error(e);
+      showToast('Error deleting event', 'error');
+    }
+  };
+
   const handleEditSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!editingDevotee) return;
@@ -458,7 +614,8 @@ export default function AdminDashboard() {
   };
 
   // Export CSV
-  const exportCSV = () => {
+  const exportCSV = async () => {
+    const XLSX = await import('xlsx');
     const headers = ['Token', 'Name', 'Village', 'Mobile', 'Status', 'Registered Time'];
     const rows = filteredDevotees.map(d => [
       d.tokenNumber,
@@ -475,7 +632,11 @@ export default function AdminDashboard() {
   };
 
   // Export PDF
-  const exportPDF = () => {
+  const exportPDF = async () => {
+    const [{ default: jsPDF }, { default: autoTable }] = await Promise.all([
+      import('jspdf'),
+      import('jspdf-autotable')
+    ]);
     const doc = new jsPDF();
     const headers = [['Token', 'Name', 'Village', 'Mobile', 'Status', 'Registered Time']];
     const data = filteredDevotees.map(d => [
@@ -532,6 +693,32 @@ export default function AdminDashboard() {
     return true;
   });
 
+  // Fetch Dedicated Restore Data
+  const fetchRestoreBackupData = async (filename: string) => {
+    setSelectedRestoreBackup(filename);
+    if (!filename) {
+      setRestoreDevotees([]);
+      return;
+    }
+    try {
+      const res = await fetch(`/api/backups/${filename}`);
+      if (res.ok) {
+        const data = await res.json();
+        setRestoreDevotees(data.devotees);
+      }
+    } catch (e) {
+      console.error("Error fetching restore data:", e);
+    }
+  };
+
+  const filteredRestoreDevotees = restoreDevotees.filter(d => {
+    const regDate = new Date(d.registrationTime);
+    if (restoreFilterYear !== 'all' && regDate.getFullYear().toString() !== restoreFilterYear) return false;
+    if (restoreFilterMonth !== 'all' && (regDate.getMonth() + 1).toString() !== restoreFilterMonth) return false;
+    if (restoreFilterDate !== 'all' && regDate.getDate().toString() !== restoreFilterDate) return false;
+    return true;
+  });
+
   // Calculate filtered stats metrics
   const fTotal = filteredAnalyticsDevotees.length;
   const fCompleted = filteredAnalyticsDevotees.filter(d => d.status === 'completed').length;
@@ -581,7 +768,8 @@ export default function AdminDashboard() {
   const villageDistribution = getVillageData();
 
   // Export Analytics to CSV
-  const exportAnalyticsCSV = () => {
+  const exportAnalyticsCSV = async () => {
+    const XLSX = await import('xlsx');
     const headers = ['Token', 'Name', 'Village', 'Mobile', 'Status', 'Registration Date'];
     const rows = filteredAnalyticsDevotees.map(d => [
       d.tokenNumber,
@@ -598,7 +786,8 @@ export default function AdminDashboard() {
   };
 
   // Export Analytics to Excel
-  const exportAnalyticsExcel = () => {
+  const exportAnalyticsExcel = async () => {
+    const XLSX = await import('xlsx');
     const headers = ['Token', 'Name', 'Village', 'Mobile', 'Status', 'Registration Date'];
     const rows = filteredAnalyticsDevotees.map(d => [
       d.tokenNumber,
@@ -615,7 +804,11 @@ export default function AdminDashboard() {
   };
 
   // Export Analytics to PDF
-  const exportAnalyticsPDF = () => {
+  const exportAnalyticsPDF = async () => {
+    const [{ default: jsPDF }, { default: autoTable }] = await Promise.all([
+      import('jspdf'),
+      import('jspdf-autotable')
+    ]);
     const doc = new jsPDF();
     const headers = [['Token', 'Name', 'Village', 'Mobile', 'Status', 'Registration Date']];
     const data = filteredAnalyticsDevotees.map(d => [
@@ -764,25 +957,48 @@ export default function AdminDashboard() {
             <Calendar className="w-4.5 h-4.5" />
             <span>નોંધણી સમયપત્રક</span>
           </button>
+
+          <button
+            onClick={() => { setActiveTab('events_admin'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+            className={cn(
+              "flex items-center gap-3.5 px-3.5 py-3 rounded-xl text-left text-xs font-bold transition-all relative overflow-hidden group",
+              activeTab === 'events_admin'
+                ? "text-maroon-900 bg-gradient-to-r from-gold-400 to-gold-500 shadow-[0_0_15px_rgba(212,175,55,0.25)] border border-gold-300/40"
+                : "text-gold-400/80 hover:text-white hover:bg-gold-500/5 hover:border-gold-500/10 border border-transparent"
+            )}
+          >
+            <Calendar className="w-4.5 h-4.5" />
+            <span>ઇવેન્ટ્સ મેનેજમેન્ટ</span>
+          </button>
+          <button
+            onClick={() => { setActiveTab('database_admin'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+            className={cn(
+              "flex items-center gap-3.5 px-3.5 py-3 rounded-xl text-left text-xs font-bold transition-all relative overflow-hidden group",
+              activeTab === 'database_admin'
+                ? "text-maroon-900 bg-gradient-to-r from-gold-400 to-gold-500 shadow-[0_0_15px_rgba(212,175,55,0.25)] border border-gold-300/40"
+                : "text-gold-400/80 hover:text-white hover:bg-gold-500/5 hover:border-gold-500/10 border border-transparent"
+            )}
+          >
+            <Database className="w-4.5 h-4.5" />
+            <span>ડેટાબેઝ બેકઅપ</span>
+          </button>
+          <button
+            onClick={() => { setActiveTab('restore'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+            className={cn(
+              "flex items-center gap-3.5 px-3.5 py-3 rounded-xl text-left text-xs font-bold transition-all relative overflow-hidden group",
+              activeTab === 'restore'
+                ? "text-maroon-900 bg-gradient-to-r from-gold-400 to-gold-500 shadow-[0_0_15px_rgba(212,175,55,0.25)] border border-gold-300/40"
+                : "text-gold-400/80 hover:text-white hover:bg-gold-500/5 hover:border-gold-500/10 border border-transparent"
+            )}
+          >
+            <RefreshCw className="w-4.5 h-4.5" />
+            <span>રીસ્ટોર (Restore)</span>
+          </button>
         </div>
 
-        {/* Database Management & Tools */}
+        {/* System Actions */}
         <div className="bg-[#121015]/65 border border-gold-500/20 rounded-3xl p-4.5 backdrop-blur-md shadow-lg flex flex-col gap-3">
           <span className="text-[10px] font-extrabold uppercase tracking-widest text-[#ffb828]/50">સિસ્ટમ મેન્ટેનન્સ</span>
-          <button
-            onClick={handleBackup}
-            className="w-full py-2.5 bg-black/40 border border-gold-500/20 hover:border-gold-500/40 text-[10px] font-bold text-gold-400 hover:text-white rounded-xl transition-all active:scale-95 flex items-center justify-center gap-1.5"
-          >
-            Backup Database
-          </button>
-          <button
-            onClick={handleRestore}
-            className="w-full py-2.5 bg-black/40 border border-gold-500/20 hover:border-gold-500/40 text-[10px] font-bold text-gold-400 hover:text-white rounded-xl transition-all active:scale-95 flex items-center justify-center gap-1.5"
-          >
-            Restore Database
-          </button>
-          
-          <div className="border-t border-gold-500/10 pt-3 mt-1">
             <button
               onClick={logout}
               className="w-full py-2.5 bg-red-950/20 hover:bg-red-900/30 border border-red-500/20 rounded-xl text-[10px] font-bold text-red-400 hover:text-white transition-all active:scale-95 flex items-center justify-center gap-1.5"
@@ -790,7 +1006,6 @@ export default function AdminDashboard() {
               <LogOut className="w-3.5 h-3.5" /> લોગઆઉટ (Logout)
             </button>
           </div>
-        </div>
 
       </aside>
 
@@ -2047,6 +2262,414 @@ export default function AdminDashboard() {
           </div>
         )}
 
+        {/* ─── EVENTS ADMIN TAB ─── */}
+        {activeTab === 'events_admin' && (
+          <div className="space-y-6">
+            <div className="flex flex-col gap-1 mb-6">
+              <h2 className="font-serif text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-gold-400 via-saffron to-gold-500">
+                ઇવેન્ટ્સ મેનેજમેન્ટ (Events Admin)
+              </h2>
+              <p className="text-xs text-gold-500/60 uppercase tracking-widest font-bold">Customize Daily Events & Upcoming Festivals</p>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              
+              {/* Upcoming Festival */}
+              <div className="bg-[#121015]/65 border border-gold-500/20 rounded-3xl p-6 backdrop-blur-md shadow-lg flex flex-col h-full relative overflow-hidden">
+                <div className="absolute top-0 right-0 p-4 opacity-5 pointer-events-none">
+                  <Calendar className="w-48 h-48" />
+                </div>
+                <div className="flex items-center gap-3 mb-6 relative z-10">
+                  <div className="bg-gold-500/10 p-2.5 rounded-xl border border-gold-500/20">
+                    <Calendar className="w-5 h-5 text-gold-400" />
+                  </div>
+                  <div>
+                    <h3 className="font-serif text-xl font-bold text-white">મહોત્સવ (Festival)</h3>
+                    <p className="text-[10px] text-white/50 uppercase tracking-widest font-bold mt-1">Upcoming Main Event</p>
+                  </div>
+                </div>
+
+                <form onSubmit={handleSaveFestival} className="space-y-4 relative z-10 flex-1 flex flex-col justify-between">
+                  <div className="space-y-4">
+                    <div className="flex flex-col gap-1.5">
+                      <label className="text-[10px] font-extrabold uppercase tracking-widest text-[#ffb828]/70">શીર્ષક (Title)</label>
+                      <input
+                        type="text"
+                        value={festival?.title || ''}
+                        onChange={e => setFestival(prev => prev ? { ...prev, title: e.target.value } : { id: '1', title: e.target.value, description: '', targetDate: '' })}
+                        placeholder="e.g. મંદિર આગામી મહોત્સવ ઉત્સવ"
+                        className="w-full bg-black/40 border border-gold-500/20 rounded-xl py-2.5 px-4 text-sm text-white focus:outline-none focus:border-gold-500 transition-colors"
+                      />
+                    </div>
+                    <div className="flex flex-col gap-1.5">
+                      <label className="text-[10px] font-extrabold uppercase tracking-widest text-[#ffb828]/70">વર્ણન (Description)</label>
+                      <textarea
+                        value={festival?.description || ''}
+                        onChange={e => setFestival(prev => prev ? { ...prev, description: e.target.value } : { id: '1', title: '', description: e.target.value, targetDate: '' })}
+                        placeholder="e.g. શ્રાવણ સુદ પૂનમના રોજ સવારે દિવ્ય આરતી તથા ભંડારાનું આયોજન."
+                        className="w-full bg-black/40 border border-gold-500/20 rounded-xl py-2.5 px-4 text-sm text-white focus:outline-none focus:border-gold-500 transition-colors min-h-24 resize-y"
+                      />
+                    </div>
+                    <div className="flex flex-col gap-1.5">
+                      <label className="text-[10px] font-extrabold uppercase tracking-widest text-[#ffb828]/70">તારીખ (Target Date)</label>
+                      <input
+                        type="date"
+                        value={festival?.targetDate ? new Date(festival.targetDate).toISOString().split('T')[0] : ''}
+                        onChange={e => setFestival(prev => prev ? { ...prev, targetDate: new Date(e.target.value).toISOString() } : { id: '1', title: '', description: '', targetDate: new Date(e.target.value).toISOString() })}
+                        className="w-full bg-black/40 border border-gold-500/20 rounded-xl py-2.5 px-4 text-sm text-white focus:outline-none focus:border-gold-500 transition-colors"
+                        style={{ colorScheme: 'dark' }}
+                      />
+                    </div>
+                  </div>
+                  
+                  <button
+                    type="submit"
+                    className="w-full py-3 mt-6 bg-gradient-to-r from-gold-500 to-saffron text-maroon-900 text-xs font-extrabold rounded-xl transition-all shadow-[0_0_15px_rgba(212,175,55,0.2)] hover:scale-[1.02] active:scale-95"
+                  >
+                    Save Festival Info
+                  </button>
+                </form>
+              </div>
+
+              {/* Daily Events */}
+              <div className="bg-[#121015]/65 border border-gold-500/20 rounded-3xl p-6 backdrop-blur-md shadow-lg flex flex-col h-full relative overflow-hidden">
+                <div className="flex items-center justify-between mb-6 relative z-10">
+                  <div className="flex items-center gap-3">
+                    <div className="bg-gold-500/10 p-2.5 rounded-xl border border-gold-500/20">
+                      <Clock className="w-5 h-5 text-gold-400" />
+                    </div>
+                    <div>
+                      <h3 className="font-serif text-xl font-bold text-white">દૈનિક કાર્યક્રમ (Daily Events)</h3>
+                      <p className="text-[10px] text-white/50 uppercase tracking-widest font-bold mt-1">Manage Schedule</p>
+                    </div>
+                  </div>
+                  <button
+                    onClick={() => {
+                      const newEvent: DailyEvent = { title: 'નવો કાર્યક્રમ', time: '08:00 AM', description: 'વિગત ઉમેરો' };
+                      handleSaveDailyEvent(newEvent);
+                    }}
+                    className="p-2 bg-gold-500/10 text-gold-400 border border-gold-500/20 hover:bg-gold-500 hover:text-maroon-900 rounded-xl transition-all"
+                  >
+                    <Plus className="w-5 h-5" />
+                  </button>
+                </div>
+
+                <div className="space-y-3 flex-1 overflow-y-auto pr-2 custom-scrollbar relative z-10">
+                  {dailyEvents.map(event => (
+                    <div key={event.id} className="bg-black/35 rounded-2xl p-4 border border-gold-500/10 space-y-3">
+                      <div className="flex gap-3">
+                        <div className="flex-1 space-y-3">
+                          <input
+                            type="text"
+                            value={event.title}
+                            onChange={e => handleSaveDailyEvent({ ...event, title: e.target.value })}
+                            className="w-full bg-transparent border-b border-gold-500/30 pb-1 text-sm font-bold text-white focus:outline-none focus:border-gold-500 transition-colors placeholder:text-white/30"
+                            placeholder="Title (શીર્ષક)"
+                          />
+                          <input
+                            type="text"
+                            value={event.description}
+                            onChange={e => handleSaveDailyEvent({ ...event, description: e.target.value })}
+                            className="w-full bg-transparent border-b border-gold-500/30 pb-1 text-xs text-white/70 focus:outline-none focus:border-gold-500 transition-colors placeholder:text-white/30"
+                            placeholder="Description (વર્ણન)"
+                          />
+                          <div className="flex items-center gap-2">
+                            <Clock className="w-3.5 h-3.5 text-gold-500/70" />
+                            <input
+                              type="text"
+                              value={event.time}
+                              onChange={e => handleSaveDailyEvent({ ...event, time: e.target.value })}
+                              className="bg-transparent border-none text-xs font-mono font-bold text-gold-400 focus:outline-none w-28"
+                              placeholder="08:00 AM"
+                            />
+                          </div>
+                        </div>
+                        <button
+                          onClick={() => event.id && handleDeleteDailyEvent(event.id.toString())}
+                          className="self-start p-2 text-red-400/50 hover:text-red-400 hover:bg-red-500/10 rounded-lg transition-colors"
+                        >
+                          <Trash2 className="w-4 h-4" />
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+                  {dailyEvents.length === 0 && (
+                    <div className="text-center py-8">
+                      <p className="text-xs text-white/40 uppercase tracking-widest font-bold">કોઈ ઇવેન્ટ ઉપલબ્ધ નથી</p>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+            
+          </div>
+        )}
+
+        {/* ─── DATABASE BACKUPS TAB ─── */}
+        {activeTab === 'database_admin' && (
+          <div className="space-y-6">
+            <div className="flex flex-col gap-1 mb-6">
+              <h2 className="font-serif text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-gold-400 via-saffron to-gold-500">
+                ડેટાબેઝ મેનેજમેન્ટ (Database Management)
+              </h2>
+              <p className="text-xs text-gold-500/60 uppercase tracking-widest font-bold">Manage system backups and snapshots</p>
+            </div>
+
+            <div className="grid grid-cols-1 gap-6">
+              <div className="bg-[#121015]/65 border border-gold-500/20 rounded-3xl p-6 backdrop-blur-md shadow-lg flex flex-col relative overflow-hidden">
+                <div className="flex items-center justify-between mb-6 relative z-10">
+                  <div className="flex items-center gap-3">
+                    <div className="bg-gold-500/10 p-2.5 rounded-xl border border-gold-500/20">
+                      <Database className="w-5 h-5 text-gold-400" />
+                    </div>
+                    <div>
+                      <h3 className="font-serif text-xl font-bold text-white">ડેટાબેઝ બેકઅપ અને રીસ્ટોર (Database Backups)</h3>
+                      <p className="text-[10px] text-white/50 uppercase tracking-widest font-bold mt-1">Restore previous snapshots</p>
+                    </div>
+                  </div>
+                  <button
+                    onClick={handleBackup}
+                    className="px-4 py-2.5 bg-gold-500/10 hover:bg-gold-500/20 border border-gold-500/30 text-gold-400 font-bold text-xs rounded-xl transition-all shadow-[0_0_15px_rgba(212,175,55,0.1)] active:scale-95 flex items-center gap-2"
+                  >
+                    <Download className="w-4 h-4" /> નવો બેકઅપ બનાવો (Create Backup)
+                  </button>
+                </div>
+
+                <div className="space-y-3 relative z-10">
+                  {backups.map((backup, idx) => {
+                    const date = new Date(backup.createdAt);
+                    return (
+                      <div key={idx} className="flex justify-between items-center bg-black/35 rounded-2xl p-4 border border-gold-500/10">
+                        <div>
+                          <div className="text-sm font-bold text-white mb-1">{backup.filename}</div>
+                          <div className="text-xs text-white/50">
+                            {date.toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' })} at {date.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' })}
+                            <span className="mx-2">•</span>
+                            {(backup.size / 1024).toFixed(1)} KB
+                          </div>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <button
+                            onClick={() => handleViewBackup(backup.filename)}
+                            className="px-4 py-2 bg-gold-500/10 border border-gold-500/20 text-gold-400 text-xs font-bold rounded-xl transition-all hover:bg-gold-500/20 flex items-center gap-2"
+                          >
+                            <Eye className="w-3.5 h-3.5" />
+                            ડેટા જુઓ (View)
+                          </button>
+                          <button
+                            onClick={() => handleRestore(backup.filename)}
+                            className="px-4 py-2 bg-gradient-to-r from-gold-500 to-saffron text-maroon-900 text-xs font-bold rounded-xl transition-all shadow-[0_0_10px_rgba(212,175,55,0.2)] hover:scale-105 flex items-center gap-2"
+                          >
+                            <RefreshCw className="w-3.5 h-3.5" />
+                            રીસ્ટોર (Restore)
+                          </button>
+                        </div>
+                      </div>
+                    );
+                  })}
+                  {backups.length === 0 && (
+                    <div className="text-center py-6">
+                      <p className="text-xs text-white/40 uppercase tracking-widest font-bold">કોઈ બેકઅપ ઉપલબ્ધ નથી</p>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+
+            {/* View Backup Data Table */}
+            {viewingBackup && (
+              <div className="bg-[#121015]/65 border border-gold-500/20 rounded-3xl overflow-hidden shadow-lg backdrop-blur-md animate-fade-in mt-6">
+                <div className="p-6 border-b border-gold-500/15 flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4 bg-gold-500/5">
+                  <div>
+                    <h3 className="text-xl font-serif font-bold text-white">બેકઅપ ડેટા (Backup Data)</h3>
+                    <p className="text-xs text-gold-500/60 uppercase tracking-widest font-bold mt-0.5">{viewingBackup}</p>
+                  </div>
+                  <div className="flex items-center gap-3 w-full lg:w-auto">
+                    <div className="relative flex-1 lg:w-64">
+                      <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gold-500/50" />
+                      <input
+                        type="text"
+                        placeholder="શોધો (વર્ષ, નામ, ગામ...)"
+                        value={backupSearchQuery}
+                        onChange={e => setBackupSearchQuery(e.target.value)}
+                        className="bg-black/50 border border-gold-500/20 rounded-xl py-2 pl-9 pr-4 text-xs text-white focus:outline-none focus:border-gold-500 w-full placeholder-gold-500/30"
+                      />
+                    </div>
+                    <button
+                      onClick={exportBackupToExcel}
+                      className="px-4 py-2.5 bg-gold-500/10 hover:bg-gold-500 text-gold-400 hover:text-maroon-900 border border-gold-500/30 rounded-xl text-xs font-bold transition-all flex items-center gap-2 shrink-0"
+                    >
+                      <FileSpreadsheet className="w-4 h-4" /> Export Excel
+                    </button>
+                    <button
+                      onClick={() => setViewingBackup(null)}
+                      className="px-4 py-2.5 bg-red-950/20 hover:bg-red-900/40 text-red-400 hover:text-white border border-red-500/30 rounded-xl text-xs font-bold transition-all flex items-center gap-2 shrink-0"
+                    >
+                      <X className="w-4 h-4" /> બંધ કરો
+                    </button>
+                  </div>
+                </div>
+                
+                <div className="overflow-x-auto max-h-[500px]">
+                  <table className="w-full text-left border-collapse">
+                    <thead className="bg-black/60 sticky top-0 z-20 backdrop-blur-md">
+                      <tr className="text-gold-500/80 text-[10px] uppercase tracking-widest border-b border-gold-500/20">
+                        <th className="p-4 font-extrabold whitespace-nowrap">Token</th>
+                        <th className="p-4 font-extrabold whitespace-nowrap">નામ (Name)</th>
+                        <th className="p-4 font-extrabold whitespace-nowrap">ગામ (Village)</th>
+                        <th className="p-4 font-extrabold whitespace-nowrap">મોબાઈલ (Mobile)</th>
+                        <th className="p-4 font-extrabold whitespace-nowrap">તારીખ (Date)</th>
+                        <th className="p-4 font-extrabold whitespace-nowrap">સમય (Time)</th>
+                        <th className="p-4 font-extrabold whitespace-nowrap">વર્ષ (Year)</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-gold-500/10 text-white/90">
+                      {backupDevotees
+                        .filter(d => 
+                          d.name.toLowerCase().includes(backupSearchQuery.toLowerCase()) ||
+                          d.village.toLowerCase().includes(backupSearchQuery.toLowerCase()) ||
+                          d.mobile.includes(backupSearchQuery) ||
+                          new Date(d.registrationTime).getFullYear().toString().includes(backupSearchQuery) ||
+                          new Date(d.registrationTime).toLocaleDateString('en-IN').includes(backupSearchQuery)
+                        )
+                        .map((d) => {
+                          const dt = new Date(d.registrationTime);
+                          return (
+                            <tr key={d.id} className="hover:bg-gold-500/5 transition-colors">
+                              <td className="p-4 font-mono text-sm font-bold text-saffron">{d.tokenNumber}</td>
+                              <td className="p-4 font-semibold text-sm">{d.name}</td>
+                              <td className="p-4 text-[#f0e6d0]/80 text-xs">{d.village}</td>
+                              <td className="p-4 text-[#f0e6d0]/80 text-xs font-mono">{d.mobile}</td>
+                              <td className="p-4 text-[#f0e6d0]/60 text-xs">{dt.toLocaleDateString('en-IN', { day: '2-digit', month: 'short' })}</td>
+                              <td className="p-4 text-[#f0e6d0]/60 text-xs">{dt.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' })}</td>
+                              <td className="p-4 text-gold-400 font-bold text-xs">{dt.getFullYear()}</td>
+                            </tr>
+                          );
+                      })}
+                      {backupDevotees.length === 0 && (
+                        <tr>
+                          <td colSpan={7} className="p-8 text-center text-white/40 text-sm">માહિતી ઉપલબ્ધ નથી (No data found)</td>
+                        </tr>
+                      )}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* ─── DEDICATED RESTORE VIEW TAB ─── */}
+        {activeTab === 'restore' && (
+          <div className="space-y-6">
+            <div className="flex flex-col gap-1 mb-6">
+              <h2 className="font-serif text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-gold-400 via-saffron to-gold-500">
+                રીસ્ટોર ડેટા (Restore Data)
+              </h2>
+              <p className="text-xs text-gold-500/60 uppercase tracking-widest font-bold">Filter and view restored devotee history</p>
+            </div>
+
+            <div className="bg-[#121015]/65 border border-gold-500/20 rounded-3xl p-6 backdrop-blur-md shadow-lg flex flex-col gap-6">
+              <div className="flex flex-col md:flex-row items-end gap-4 bg-black/40 p-5 rounded-2xl border border-gold-500/10">
+                <div className="flex-1 w-full flex flex-col gap-1.5">
+                  <label className="text-[10px] uppercase font-bold tracking-widest text-gold-500/80">Select Backup File</label>
+                  <select
+                    value={selectedRestoreBackup}
+                    onChange={(e) => fetchRestoreBackupData(e.target.value)}
+                    className="w-full bg-black/50 border border-gold-500/20 rounded-xl py-2.5 px-4 text-xs text-white focus:outline-none focus:border-gold-500"
+                  >
+                    <option value="">-- બેકઅપ ફાઈલ પસંદ કરો --</option>
+                    {backups.map(b => (
+                      <option key={b.filename} value={b.filename}>{b.filename}</option>
+                    ))}
+                  </select>
+                </div>
+
+                <div className="flex-1 w-full flex flex-col gap-1.5">
+                  <label className="text-[10px] uppercase font-bold tracking-widest text-gold-500/80">વર્ષ (Year)</label>
+                  <select
+                    value={restoreFilterYear}
+                    onChange={(e) => setRestoreFilterYear(e.target.value)}
+                    className="w-full bg-black/50 border border-gold-500/20 rounded-xl py-2.5 px-4 text-xs text-white focus:outline-none focus:border-gold-500"
+                  >
+                    <option value="all">બધા વર્ષો (All)</option>
+                    {[2024, 2025, 2026, 2027].map(y => <option key={y} value={y.toString()}>{y}</option>)}
+                  </select>
+                </div>
+
+                <div className="flex-1 w-full flex flex-col gap-1.5">
+                  <label className="text-[10px] uppercase font-bold tracking-widest text-gold-500/80">મહિનો (Month)</label>
+                  <select
+                    value={restoreFilterMonth}
+                    onChange={(e) => setRestoreFilterMonth(e.target.value)}
+                    className="w-full bg-black/50 border border-gold-500/20 rounded-xl py-2.5 px-4 text-xs text-white focus:outline-none focus:border-gold-500"
+                  >
+                    <option value="all">બધા મહિના (All)</option>
+                    {Array.from({length: 12}, (_, i) => i + 1).map(m => (
+                      <option key={m} value={m.toString()}>{m}</option>
+                    ))}
+                  </select>
+                </div>
+
+                <div className="flex-1 w-full flex flex-col gap-1.5">
+                  <label className="text-[10px] uppercase font-bold tracking-widest text-gold-500/80">તારીખ (Date)</label>
+                  <select
+                    value={restoreFilterDate}
+                    onChange={(e) => setRestoreFilterDate(e.target.value)}
+                    className="w-full bg-black/50 border border-gold-500/20 rounded-xl py-2.5 px-4 text-xs text-white focus:outline-none focus:border-gold-500"
+                  >
+                    <option value="all">બધી તારીખ (All)</option>
+                    {Array.from({length: 31}, (_, i) => i + 1).map(d => (
+                      <option key={d} value={d.toString()}>{d}</option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+
+              {selectedRestoreBackup ? (
+                <div className="overflow-x-auto max-h-[500px] border border-gold-500/20 rounded-2xl">
+                  <table className="w-full text-left border-collapse">
+                    <thead className="bg-black/60 sticky top-0 z-20 backdrop-blur-md">
+                      <tr className="text-gold-500/80 text-[10px] uppercase tracking-widest border-b border-gold-500/20">
+                        <th className="p-4 font-extrabold whitespace-nowrap">Token</th>
+                        <th className="p-4 font-extrabold whitespace-nowrap">નામ (Name)</th>
+                        <th className="p-4 font-extrabold whitespace-nowrap">ગામ (Village)</th>
+                        <th className="p-4 font-extrabold whitespace-nowrap">તારીખ (Date)</th>
+                        <th className="p-4 font-extrabold whitespace-nowrap">સમય (Time)</th>
+                        <th className="p-4 font-extrabold whitespace-nowrap">વર્ષ (Year)</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-gold-500/10 text-white/90">
+                      {filteredRestoreDevotees.map((d) => {
+                        const dt = new Date(d.registrationTime);
+                        return (
+                          <tr key={d.id} className="hover:bg-gold-500/5 transition-colors">
+                            <td className="p-4 font-mono text-sm font-bold text-saffron">{d.tokenNumber}</td>
+                            <td className="p-4 font-semibold text-sm">{d.name}</td>
+                            <td className="p-4 text-[#f0e6d0]/80 text-xs">{d.village}</td>
+                            <td className="p-4 text-[#f0e6d0]/60 text-xs">{dt.toLocaleDateString('en-IN', { day: '2-digit', month: 'short' })}</td>
+                            <td className="p-4 text-[#f0e6d0]/60 text-xs">{dt.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' })}</td>
+                            <td className="p-4 text-gold-400 font-bold text-xs">{dt.getFullYear()}</td>
+                          </tr>
+                        );
+                      })}
+                      {filteredRestoreDevotees.length === 0 && (
+                        <tr>
+                          <td colSpan={6} className="p-8 text-center text-white/40 text-sm">માહિતી ઉપલબ્ધ નથી (No data found)</td>
+                        </tr>
+                      )}
+                    </tbody>
+                  </table>
+                </div>
+              ) : (
+                <div className="py-12 text-center text-white/30 text-sm font-bold border border-dashed border-gold-500/20 rounded-2xl">
+                  Please select a backup file to view the restored data.
+                </div>
+              )}
+            </div>
+          </div>
+        )}
+
         {/* ─── MODAL: SCHEDULE PREVIEW LOCKSCREEN ─── */}
         {showSchedulePreview && (
           <div className="fixed inset-0 bg-black/95 backdrop-blur-md z-50 flex items-center justify-center p-4 print:hidden">
@@ -2131,16 +2754,27 @@ export default function AdminDashboard() {
             </button>
 
             <div className="space-y-1">
-              <h4 className="font-serif text-sm font-bold text-gold-500 tracking-wider">TIGER CHEHAR RAJ UVASAD</h4>
+              <h4 className="font-serif text-sm font-bold text-gold-500 tracking-wider">ટાઇગર ચેહર રાજ આશ્રમ ઉવાસદ</h4>
               <p className="text-[8px] text-white/40 uppercase tracking-widest font-bold">Divine Darshan Entry Pass</p>
             </div>
 
             <div className="border border-gold-500/20 rounded-2xl p-4 bg-black/40 space-y-4">
-              <div className="w-28 h-28 mx-auto bg-white p-2 rounded-xl border border-gold-500/20">
-                <img 
-                  src={`https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=devotee-pass-${selectedPass.id}`} 
-                  alt="Entry QR Code" 
-                  className="w-full h-full object-contain" 
+              <div className="w-28 h-28 mx-auto bg-white p-2 rounded-xl border border-gold-500/20 flex items-center justify-center">
+                <QRCodeCanvas 
+                  value={JSON.stringify({
+                    token: selectedPass.tokenNumber.toString().padStart(3, '0'),
+                    name: selectedPass.name,
+                    village: selectedPass.village,
+                    mobile: selectedPass.mobile,
+                    entryTime: new Date(selectedPass.registrationTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+                    temple: "ટાઇગર ચેહર રાજ આશ્રમ ઉવાસદ"
+                  })}
+                  size={96}
+                  bgColor="#ffffff"
+                  fgColor="#000000"
+                  level="H"
+                  includeMargin={false}
+                  className="w-full h-full object-contain"
                 />
               </div>
 

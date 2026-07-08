@@ -60,7 +60,7 @@ export default function Layout() {
                 </motion.div>
                 <div>
                   <h1 className="font-serif text-lg md:text-2xl font-bold tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-gold-400 via-gold-500 to-orange-glow drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] group-hover:brightness-110 transition-all">
-                    Tiger Chehar Raj Uvasad
+                    ટાઇગર ચેહર રાજ આશ્રમ ઉવાસદ
                   </h1>
                   <p className="text-gold-500/80 text-[9px] uppercase tracking-[0.25em] font-extrabold flex items-center gap-1.5">
                     <span className="w-1.5 h-1.5 rounded-full bg-saffron animate-ping" />
