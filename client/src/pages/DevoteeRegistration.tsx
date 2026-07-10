@@ -1,7 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { ReactTransliterate } from 'react-transliterate';
-import 'react-transliterate/dist/index.css';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Flame, Clock, Compass, Users, CheckCircle2, RotateCcw, User, Home, Phone, 
@@ -1250,11 +1248,10 @@ export default function DevoteeRegistration() {
                       <label className="text-xs font-bold text-gold-500/80">ભક્તનું નામ (Full Name) *</label>
                       <div className="relative">
                         <User className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gold-500/40 z-10" />
-                        <ReactTransliterate
+                        <input
+                          type="text"
                           value={formData.name}
-                          onChangeText={(text) => setFormData({ ...formData, name: text })}
-                          lang={inputLang as any}
-                          containerClassName="w-full"
+                          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                           className="w-full bg-black/40 border border-gold-500/20 rounded-xl py-3 pl-11 pr-4 text-sm text-white focus:outline-none focus:border-gold-500 focus:shadow-[0_0_15px_rgba(212,175,55,0.15)] transition-all placeholder-white/20"
                           placeholder="દા.ત. નરેશભાઈ પટેલ"
                         />
@@ -1283,11 +1280,10 @@ export default function DevoteeRegistration() {
                       <label className="text-xs font-bold text-gold-500/80">ગામનું નામ (Village) *</label>
                       <div className="relative">
                         <Home className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gold-500/40 z-10" />
-                        <ReactTransliterate
+                        <input
+                          type="text"
                           value={formData.village}
-                          onChangeText={(text) => setFormData({ ...formData, village: text })}
-                          lang={inputLang as any}
-                          containerClassName="w-full"
+                          onChange={(e) => setFormData({ ...formData, village: e.target.value })}
                           className="w-full bg-black/40 border border-gold-500/20 rounded-xl py-3 pl-11 pr-4 text-sm text-white focus:outline-none focus:border-gold-500 focus:shadow-[0_0_15px_rgba(212,175,55,0.15)] transition-all placeholder-white/20"
                           placeholder="ગામ દા.ત. ઉવાસદ"
                         />
@@ -1359,12 +1355,9 @@ export default function DevoteeRegistration() {
                   {/* Special Notes */}
                   <div className="flex flex-col gap-1.5">
                     <label className="text-xs font-bold text-gold-500/80">ખાસ નોંધ / માનતા (Special Notes)</label>
-                    <ReactTransliterate
-                      renderComponent={(props) => <textarea {...props} />}
+                    <textarea
                       value={formData.specialNotes}
-                      onChangeText={(text) => setFormData({ ...formData, specialNotes: text })}
-                      lang={inputLang as any}
-                      containerClassName="w-full"
+                      onChange={(e) => setFormData({ ...formData, specialNotes: e.target.value })}
                       className="w-full bg-black/40 border border-gold-500/20 rounded-xl py-3 px-4 text-sm text-white focus:outline-none focus:border-gold-500 transition-colors h-20"
                       placeholder="માનતા અથવા કોઈ વિશેષ સેવા બાબત નોંધ..."
                     />
