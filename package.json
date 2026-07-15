@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "scripts": {
     "postinstall": "npm run install-all",
-    "install-all": "NODE_OPTIONS=--max-old-space-size=400 npm ci --no-audit --no-fund --prefix client --include=dev && NODE_OPTIONS=--max-old-space-size=400 npm ci --no-audit --no-fund --prefix server --include=dev",
+    "install-all": "npm ci --no-audit --no-fund --prefix client --include=dev && npm ci --no-audit --no-fund --prefix server --include=dev",
     "dev:client": "npm run dev --prefix client",
     "dev:server": "npm run dev --prefix server",
     "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
